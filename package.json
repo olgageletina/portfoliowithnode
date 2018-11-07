@@ -1,0 +1,27 @@
+{
+  "name": "heroku-test",
+  "version": "1.0.0",
+  "description": "node dependencies",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "request": "^2.88.0",
+    "underscore": "^1.9.1"
+  },
+  "keywords": [
+    "appengine",
+    "test",
+    "two"
+  ],
+  "author": "og",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olgageletina/portfoliowithnode/issues"
+  },
+  "engines": {
+    "node": "10.10.0"
+  },
+  "homepage": "https://github.com/olgageletina/portfoliowithnode#readme"
+}

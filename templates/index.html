@@ -1,0 +1,98 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<title>OG porfolio</title>
+	<%= headerHTML %>
+	</head>
+	<body >
+		<!-- onload="initSlideShow();" -->
+		<div class="home-wrap">
+			<div class="portals portals-type top-right" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+				<%= titleHTML %>
+			</div>
+			<div class="portals portals-images top-right" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+				<%= images %>
+			</div>
+		</div>
+
+	</body>
+	<script>
+		let currentElem = null;
+		var container = document.querySelector(".home-wrap");
+		var elID = null;
+		var elements = [];
+		var imgIndex = 0;
+
+		container.onmouseover = function(event) {
+		  if (currentElem) {
+		    // before entering a new element, the mouse always leaves the previous one
+		    // if we didn't leave <section> yet, then we're still inside it, so can ignore the event
+		    return;
+		  }
+
+		  let target = event.target.closest('section');
+		  if (!target || !container.contains(target)) return;
+
+		  // yeah we're inside <section> now
+		  currentElem = target;
+		  elID = target.id;
+		  elements = document.querySelectorAll("#"+elID);
+
+		  for (var i = 0; i < elements.length; i++) {
+		  	elements[i].classList.add("hover")        			
+			}
+		  // console.log(target);
+		};
+
+
+		container.onmouseout = function(event) {
+		  // if we're outside of any <section> now, then ignore the event
+		  if (!currentElem) return;
+
+		  // we're leaving the section -- where to? Maybe to a child element?
+		  let relatedTarget = event.relatedTarget;
+		  if (relatedTarget) { // possible: relatedTarget = null
+		    while (relatedTarget) {
+		      // go up the parent chain and check -- if we're still inside currentElem
+		      // then that's an internal transition -- ignore it
+		      if (relatedTarget == currentElem) return;
+		      relatedTarget = relatedTarget.parentNode;
+		    }
+		  }
+
+		  for (var i = 0; i < elements.length; i++) {
+		  	elements[i].classList.remove("hover");
+		  	if (i == elements.length - 1) {
+		  		var img = elements[i].querySelector(".active"); // get the active image
+		  		var images = elements[i].querySelectorAll(".home-image"); //get all of the images of the category
+		  		let arr = Array.from(images); //cast all of the images into an array
+		  		var iofImg = arr.indexOf(img); //get the index of the active image
+		  		var activeImg = images.item(iofImg); //select the node tha corresponds to the active image
+
+		  		activeImg.classList.remove("active"); //remove the actve tag
+		  		activeImg.style.display = "none"; //no longer display it
+
+		  		if (iofImg ==  arr.length - 1) { //advance index forward
+		  			iofImg = 0;
+		  		}
+		  		else {
+		  			iofImg +=1; 
+		  		}
+		  		activeImg = images.item(iofImg); //set a new active image
+		  		activeImg.classList.add("active");
+		  		activeImg.style.display = null;
+		  		// console.log(iofImg);
+		  	}
+
+		  }
+
+		  currentElem = null;
+		  elID = null;
+		};
+
+	</script>
+	
+</html>

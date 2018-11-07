@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<title>OG porfolio</title>
+	<%= headerHTML %>
+	<!-- <script type="text/javascript" src="../projectPage.js"></script> -->
+
+	</head>
+	<body >
+		<div class="portal-wrap reveal">
+		<ul class = "video-projects">
+			<div class="title-wrap">
+				<%= titleHTML %>
+			</div>
+			<div class="images">
+				<%= images %>
+			</div>
+		</ul>
+		</div>	
+	<a href="/" class="back">
+		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 64.4 56.6" style="enable-background:new 0 0 64.4 56.6;" xml:space="preserve">
+		<g id="a">
+			<polygon id="white" points="0,28.3 28.3,0 35.4,7.1 18.9,23.6 64.4,23.6 64.4,33.6 19.4,33.6 35.4,49.5 28.3,56.6 	"/>
+		</g>
+		</svg>
+	</a>
+	</body>
+	<script type="text/javascript">
+		let currentElem = null;
+		var container = document.querySelector(".portal-wrap");
+		var elID = null;
+
+		container.onmouseover = function(event) {
+		  if (currentElem) {
+		    // before entering a new element, the mouse always leaves the previous one
+		    // if we didn't leave <span> yet, then we're still inside it, so can ignore the event
+		    return;
+		  }
+
+		  let target = event.target.closest('span');
+
+		  if (!target || !container.contains(target)) return;
+
+		  // yeah we're inside <span> now
+		  currentElem = target;
+		  elID = target.id;
+		  elements = document.querySelectorAll("#"+elID);
+
+		  elements[1].style.display = null;
+		}
+
+
+		container.onmouseout = function(event) {
+		  // if we're outside of any <span> now, then ignore the event
+		  if (!currentElem) return;
+
+		  // we're leaving the span -- where to? Maybe to a child element?
+		  let relatedTarget = event.relatedTarget;
+		  if (relatedTarget) { // possible: relatedTarget = null
+		    while (relatedTarget) {
+		      // go up the parent chain and check -- if we're still inside currentElem
+		      // then that's an internal transition -- ignore it
+		      if (relatedTarget == currentElem) return;
+		      relatedTarget = relatedTarget.parentNode;
+		    }
+		  }
+
+		  elements[1].style.display = "none";//do whatever on mouse out
+
+		  currentElem = null;
+		  elID = null;
+		};
+
+
+
+	</script>
+</html>
