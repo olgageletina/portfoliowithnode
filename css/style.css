@@ -799,7 +799,7 @@ h1 {
 .portals section {
   position: relative;
   float: left;
-  display: block;
+  display: inline-table;
   width: calc(100%/3);
   height: 50%;
 }
