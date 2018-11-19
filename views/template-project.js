@@ -46,6 +46,7 @@ function makeListContent(stuff){
     for (var i=0;i<stuff.rows.length;i++){
         var pInfo = stuff.rows[i]; 
         contentHTML.ptitle = pInfo.pname;
+        contentHTML.catID = pInfo.pcat;
 
         if (pInfo.csection === 'about') {
             contentHTML.year = pInfo.year;

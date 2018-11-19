@@ -56,7 +56,8 @@ function makeListContent(stuff){
         var itemInfo = {
             name: stuff.rows[i].pname,
             imageURL: stuff.rows[i].pimgurl,
-            slug: stuff.rows[i].purl
+            slug: stuff.rows[i].purl,
+            catID: stuff.rows[i].pcategory
         };
 
         itemInfo.url = "/category/" + stuff.rows[i].pcategory + "/projects/" + itemInfo.slug;
@@ -73,6 +74,7 @@ function makeListContent(stuff){
     return Promise.all([getTitles, getImages])
     .then((result) => {
         // console.log(result);
+        contentHTML.catID = itemInfo.catID;
         var [titlesArr, imagesArr] = result;
         contentHTML.titleHTML = titlesArr.join('');
         contentHTML.images = imagesArr.join('');
