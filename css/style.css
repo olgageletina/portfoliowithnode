@@ -800,8 +800,8 @@ h1 {
 .portals section {
   position: relative;
   float: left;
-  display: inline-table;
-  width: calc(100%/3);
+  display: block;
+  width: 34%; /*calc(100%/3)*/
   height: 50%;
 }
 @media screen and (orientation: portrait) {
