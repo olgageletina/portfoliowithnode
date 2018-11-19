@@ -345,7 +345,7 @@ a:focus {
 }
 .home-wrap {
   position: fixed;
-  /*display: table;*/
+  display: table;
   top: 0;
   right: 0;
   left: 0;
@@ -800,7 +800,7 @@ h1 {
 .portals section {
   position: relative;
   float: left;
-  display: inline-table;
+  display: table-cell;
   width: calc(100%/3);
   height: 50%;
 }
