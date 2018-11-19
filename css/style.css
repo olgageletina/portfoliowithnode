@@ -801,13 +801,13 @@ h1 {
   position: relative;
   float: left;
   display: block;
-  width: 34%; /*calc(100%/3)*/
+  width: calc(100%/3);
   height: 50%;
 }
 @media screen and (orientation: portrait) {
   .portals section {
     width: 50%;
-    height: calc(100%/3);
+    height: 34%;
   }
 }
 .portals-type {
