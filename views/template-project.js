@@ -55,11 +55,11 @@ function makeListContent(stuff){
         else if (pInfo.csection === 'iframe') {
             contentPromises.push(renderTemplate("projectIframe", {imgURL: pInfo.img})); //push promise to promise array
         } else if (pInfo.csection === 'full') {
-            contentPromises.push(renderTemplate("projectFull", {imgURL: pInfo.img, text: pInfo.divtext})); //push promise to promise array
+            contentPromises.push(renderTemplate("projectFull", {imgURL: pInfo.img, text: pInfo.divtext, catID: pInfo.pcat})); //push promise to promise array
         } else if (pInfo.csection === 'left') {
-            contentPromises.push(renderTemplate("projectLeft", {imgURL: pInfo.img, text: pInfo.divtext})); //push promise to promise array
+            contentPromises.push(renderTemplate("projectLeft", {imgURL: pInfo.img, text: pInfo.divtext, catID: pInfo.pcat})); //push promise to promise array
         } else  if (pInfo.csection === 'right') {
-            contentPromises.push(renderTemplate("projectRight", {imgURL: pInfo.img, text: pInfo.divtext})); //push promise to promise array
+            contentPromises.push(renderTemplate("projectRight", {imgURL: pInfo.img, text: pInfo.divtext, catID: pInfo.pcat})); //push promise to promise array
         }
     }
     

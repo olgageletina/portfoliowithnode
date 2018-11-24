@@ -78,7 +78,7 @@ function testPath(url, request, response) {
       break;
     case /about/.test(url):
       console.log("about page");
-      require("./controllers/404").get(request, response);
+      require("./controllers/about").get(request, response);
       break;
     case categoryList.indexOf(catId) != -1:
       request.q = catId;

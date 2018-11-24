@@ -1,6 +1,4 @@
 <% _.each(items, function(item, index){ %>
-<% if (index == 0){ %>
-			<span class="home-image active" style="background-image: url(<%= item %>);"></span>
-	<% } else { %>
+			<span class="home-image active" style="background-image: url(<%= item %>);  display:none;"></span>
 			<span class="home-image" style="background-image: url(<%= item %>); display:none;"></span>
-<% }});%>
+<% });%>

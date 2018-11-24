@@ -36,7 +36,7 @@ exports.build = function(features) {
 
 const renderTemplate = function (_templateName, _data){
     return new Promise((resolve, reject) => {
-    return fs.readFile("./templates/"+ _templateName + ".html", (err, _templateString) => {
+    return fs.readFile("./templates/"+ _templateName + ".html", (err, _templateString) => { //when testing locally make sure that the path is adjusted as needed
         if (err) reject(err);
         var _template =  _.template(_templateString.toString());
         resolve (_template(_data));
