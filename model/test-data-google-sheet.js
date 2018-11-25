@@ -24,7 +24,7 @@ function makeNeatJSON (data, qry) {
           var name = key.substring(4);
           var content = entry[key];
           var value = content.$t;
-          if(value.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+          if(value.indexOf(query.toLowerCase()) > -1) { //previously value was lower cased as well
               queried = true;
           }
           newRow[name] = value;
@@ -87,4 +87,4 @@ exports.getQuery = function(query, page) {
   return getContent(requestURL, query);  
 }
 
-// getQuery('', 3).then((res) => console.log(JSON.stringify(res))).catch((err) => console.log(err));
+// getQuery('lula', 3).then((res) => console.log(JSON.stringify(res))).catch((err) => console.log(err));

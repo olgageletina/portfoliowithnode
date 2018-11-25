@@ -4,7 +4,7 @@ var test_data = require('../model/test-data-google-sheet');  //data to be popula
 var data = {};
 
 exports.get = function(request, response) {
-  
+  // console.log(request);
   //first promise to get the data
   test_data.getQuery(request.q, request.sheet)
   .then((res) => {
@@ -18,7 +18,6 @@ exports.get = function(request, response) {
     //second promise to generate the template
     template.build(dataString)
       .then((res) => {
-        // console.log('res', res)
         response.write(res);
         response.end();
       });

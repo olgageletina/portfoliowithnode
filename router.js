@@ -46,16 +46,15 @@ exports.get = function(request, response) {
 };
 
 function testPath(url, request, response) {
-  //current projects , 'big-picture', 'loom', 'pans-labyrinth', 'artsy', 'stairs', 'ferrofluid', 'photography', 'such-fruit', 'amplify', 'co-green'
-  var projectList = ["lula"];
+  var projectList = ["lula", "the-big-picture", "loom", 'pans-labyrinth', 'artsy', 'stairs', 'ferrofluid', 'photography', 'such-fruit', 'amplify', 'co-green'];
 
   //current cateories
   var categoryList = [
-    "hardware",
-    "web-mobile",
-    "software",
-    "still-motion",
-    "materials"
+    'hardware',
+    'web-mobile',
+    'software',
+    'still-motion',
+    'materials'
   ];
 
   var projectId = url.split("/")[4];
@@ -70,6 +69,13 @@ function testPath(url, request, response) {
       console.log("this is a project page");
       require("./controllers/projectpage").get(request, response);
       break;
+    case categoryList.indexOf(catId) != -1:
+    case projectList.indexOf(projectId) === undefined:
+      request.q = catId;
+      request.sheet = 2;
+      console.log("project category page");
+      require("./controllers/categorypage").get(request, response);
+      break;
     case /home/.test(url):
     case "/" === url:
       request.sheet = 1;
@@ -79,12 +85,6 @@ function testPath(url, request, response) {
     case /about/.test(url):
       console.log("about page");
       require("./controllers/about").get(request, response);
-      break;
-    case categoryList.indexOf(catId) != -1:
-      request.q = catId;
-      request.sheet = 2;
-      console.log("project category page");
-      require("./controllers/categorypage").get(request, response);
       break;
     default:
       console.log("no matchy");
