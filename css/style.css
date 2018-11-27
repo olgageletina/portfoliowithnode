@@ -846,10 +846,10 @@ h1 {
 }
 
 .portals-type .software, .software-bg {
-  background-color: #8A92A0;
+  background-color: #71D9B3;  /*80F7D0*/
 }
 .software-border {
-  border-bottom: 10pt solid #8A92A0;
+  border-bottom: 10pt solid #71D9B3;
 }
 
 .portals-type .still-motion, .still-motion-bg {
@@ -860,11 +860,11 @@ h1 {
 }
 
 .portals-type .materials, .materials-bg{
-  background-color: #71D9B3;
+  background-color: #8A92A0;
 }
 
 .materials-border {
-  border-bottom: 10pt solid #71D9B3;
+  border-bottom: 10pt solid #8A92A0;
 }
 
 .portals-type .web-mobile, .web-mobile-bg{

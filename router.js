@@ -46,7 +46,7 @@ exports.get = function(request, response) {
 };
 
 function testPath(url, request, response) {
-  var projectList = ["lula", "the-big-picture", "loom", 'pans-labyrinth', 'artsy', 'stairs', 'ferrofluid', 'photography', 'such-fruit', 'amplify', 'co-green'];
+  var projectList = ['lula', 'the-big-picture', 'loom', 'pans-labyrinth', 'art-data', 'stairs', 'ferrofluid', 'triptychs', 'such-fruit', 'amplify', 'co-green'];
 
   //current cateories
   var categoryList = [
