@@ -14,10 +14,10 @@ const generateData = function() {
                     return finalHTML.toString();
                 })
         })
-    .catch(err => {
-        console.log('ERRRRRRRR', err);
-        throw err;
-    })
+        .catch(err => {
+            console.log('ERRRRRRRR', err);
+            throw err;
+        })
 };
 
 

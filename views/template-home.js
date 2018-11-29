@@ -77,14 +77,12 @@ function makeListContent(stuff){
 
     //generate HTML
     for (var i=0;i<contentData.length; i++) {
-        console.log('thing');
         var imgInfo = {};
         
         imgInfo.catID = contentData[i].catTag;
         
         titlePromises.push(renderTemplate("indexTitleSection", contentData[i]));
         
-        console.log('im here');
         imagePromises.push(
         ((j) => {
         var catImg = contentData[j].catImgs;
