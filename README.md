@@ -1,8 +1,9 @@
 # portfoliowithnode
 
-This is a repository for my personal website
+This is a repository for my personal website. 
 
-
+## Here's how it works:
+![portfolio architecture-final](https://s3.amazonaws.com/geletina-images/portfolio-architecture-final.png)
 
 __Server:__ listens and responds to HTTP requests
 
@@ -14,4 +15,6 @@ __View:__ renders the response
 
 __Model:__ Google sheets back end parses request to query appropriate data
 
-![portfolio architecture-final](https://s3.amazonaws.com/geletina-images/portfolio-architecture.png)
+
+## TODO:
+Add notes on deployment to Google App Engine
