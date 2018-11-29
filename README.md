@@ -2,7 +2,7 @@
 
 This is a repository for my personal website
 
-![portfolio architecture](https://s3.amazonaws.com/geletina-images/portfolio-architecture.png)
+
 
 __Server:__ listens and responds to HTTP requests
 
@@ -13,3 +13,5 @@ __Conroller:__ requests data from model sends it to the view, then sends the vie
 __View:__ renders the response
 
 __Model:__ Google sheets back end parses request to query appropriate data
+
+![portfolio architecture-final](https://s3.amazonaws.com/geletina-images/portfolio-architecture.png)
