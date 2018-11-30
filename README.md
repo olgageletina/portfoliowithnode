@@ -6,7 +6,7 @@ This is a repository for my personal website. Built with Node.js, without the us
 ![portfolio architecture-final](https://s3.amazonaws.com/geletina-images/portfolio-architecture-00.png)
 
 
-| Key        | function           | Scripts  |
+| Key        | Function           | Scripts  |
 | ------------- |-------------| -----|
 |__Server__      | listens and responds to HTTP requests | server.js |
 |__Router__      | parses URL, adds query terms to request, and sends to appropriate controller parses URL, adds query terms to request, and sends to appropriate controller      |   router.js |
