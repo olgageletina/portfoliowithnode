@@ -14,5 +14,9 @@ This is a repository for my personal website. Built with Node.js, without the us
 |__View__ | renders the response      |    /views* |
 |__Model__ | Google sheets back end parses request to query appropriate data      |    /model/test-data-google-sheet.js |
 
-## TODO:
-Add notes on deployment to Google App Engine
+## Notes on deployment to Google App Engine:
+Before deploying the app, make sure:
+1. GCP project is created
+2. [App Engine project](https://console.cloud.google.com/projectselector/appengine/create) is created 
+3. Billing is enabled
+4. [Permissions](https://console.cloud.google.com/iam-admin/iam) look good
