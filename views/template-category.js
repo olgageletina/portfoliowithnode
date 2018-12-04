@@ -16,7 +16,7 @@ const generateData = function(thing) {
                 })
                 .then(projectsHTML => {
                     // console.log(projectsHTML);
-                    return renderTemplate("hardware", projectsHTML).then(
+                    return renderTemplate("category", projectsHTML).then(
                         finalHTML => {
                             return finalHTML.toString();
                         }

@@ -335,22 +335,6 @@ input[type=button] {
     height: 100%;
 }
 
-/* Fonts */
-
-@font-face {
-    font-family: 'couture';
-    src: url('./font/couture-bld.otf');
-    /*  src: url('./font/AvernMT-Heavy.eot?#iefix') format('embedded-opentype')
-        , url('./font/AvernMT-Heavy.woff') format('woff')
-        , url('./font/AvernMT-Heavy.ttf') format('truetype');*/
-    font-weight: bold;
-    font-style: normal;
-}
-
-html {
-    font-family: 'avernmt', Arial, Helvetica;
-}
-
 /* Global */
 html {
     overflow: hidden;

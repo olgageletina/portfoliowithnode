@@ -1,33 +1,6 @@
-var template = require("../views/template-category"); //this is the home template
-var errorTemplate = require("../views/template-404");
-var test_data = require("../model/test-data-google-sheet"); //data to be populated through as a promise
-var data = {};
+var template = require("../views/template-category");
+var controllerMain = require("./generic-controller");
 
 exports.get = function(request, response) {
-    //first promise to get the data
-    test_data
-        .getQuery(request.q, request.sheet)
-        .then(res => {
-            data = res;
-            response.writeHead(200, {
-                "Content-Type": "text/html"
-            });
-            var dataString = JSON.stringify(data);
-
-            //second promise to generate the template
-            return template.build(dataString).then(res => {
-                // console.log('res', res)
-                response.write(res);
-                response.end();
-            });
-        })
-        .catch(err => {
-            response.writeHead(404, {
-                "Content-Type": "text/html"
-            });
-            errorTemplate.build().then(html => {
-                response.write(html);
-                response.end();
-            });
-        });
-};
+    controllerMain.get(request, response, template);    
+}

@@ -3,6 +3,7 @@ var fs = require('fs');
 
 const generateData = function() {
     var errorHTML = {};
+    
     return renderTemplate("headHTML", { path: "" })
         .then(result => {
             errorHTML.headerHTML = result;
