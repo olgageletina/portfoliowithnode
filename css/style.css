@@ -417,6 +417,10 @@ a:focus {
     background-color: white;
 }
 
+.about-main {
+    justify-content: center;
+}
+
 .about-project-left {
     float: left;
     width: calc(100%/3);
@@ -433,12 +437,14 @@ a:focus {
     overflow-y: scroll !important;
 }
 
-.about-right, .about-left {
+/*.about-right, .about-left {
     width:50%;
-}
+}*/
 
 .about-right {
+    width:60%;
     padding: 40px;
+    text-align: center;
 }
 
 
@@ -450,7 +456,7 @@ a:focus {
 
 .about-text {
     padding: 20px;
-    top: 20%;
+    top: 15%;
     width: 100%;
     height: auto;
     background-color: #999999;
@@ -518,7 +524,7 @@ a:focus {
 
 .st3 {
     fill: none;
-    stroke: #000000;
+    stroke: white;
     stroke-width: 7;
     stroke-linejoin: round;
     stroke-miterlimit: 10;
@@ -557,6 +563,7 @@ a:focus {
     display: flex;
     max-height: fit-content;
     align-self: center;
+    justify-content: center;
 /*    position: absolute;
     top: 10%;
     left: 50%;*/
@@ -564,12 +571,13 @@ a:focus {
 }
 
 .logo-scale svg {
-    width: auto;
+    width: 100%;
     max-height: 80%;
     position: absolute;
-    top: 10%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, -50%);
+    /*animation: thump 1.0s 1000 linear*/
 }
 
 /**/
@@ -581,7 +589,7 @@ p {
 }
 
 p.small {
-    font-size: 14pt;
+    font-size: 13pt;
 }
 
 .about-me-text h1 {
@@ -775,6 +783,19 @@ h1.white {
         width: 100%;
         height: 66.666666%;
     }
+}
+
+
+#og {
+    -webkit-animation: thump 1.0s infinite linear;
+    animation: thump 1.0s infinite linear;
+    font-size: 120px;
+}
+
+#og::before {
+    height: 32px;
+    width: 32px;
+    background-image: url(https://s3.amazonaws.com/geletina-images/new-logo.svg);
 }
 
 .preloader img {
@@ -1167,15 +1188,11 @@ h1.white {
         justify-content: center;
 
     }
-
-    /*.about-right, .about-left {
-        min-width: 100%;
-        clear: both;
+    
+    /*ul.icons {
+    justify-content: center;    
     }*/
-
-    .about-left{
-        /*display: none;*/
-    }
+    
 
     .about-right {
         align-self: flex-end;
@@ -1183,11 +1200,8 @@ h1.white {
 
     .logo-scale svg{
         max-height: 100%;
-    }
-
-    /*.about-text {
-        top: 10%;
-    }*/
+        top: 100%; 
+    } 
 
     .project-right {
         width: 100%;
@@ -1763,22 +1777,22 @@ a {
 ul.icons {
     display: flex;
     /*align-items: center;*/
-    /*justify-content: center;*/
+    justify-content: center;
 }
 
 
 ul.icons li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
     width: 40px;
     margin: 0 10px;
 }
 
 ul.icons li a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
     height: 100%;
     width: 100%;
 }
