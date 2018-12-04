@@ -442,7 +442,7 @@ a:focus {
 }*/
 
 .about-right {
-    width:60%;
+    width: 60%;
     padding: 40px;
     text-align: center;
 }
@@ -539,15 +539,15 @@ a:focus {
 }
 
 @-webkit-keyframes uline {
-  to {
-    stroke-dashoffset: 0;
-  }
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 @keyframes uline {
-  to {
-    stroke-dashoffset: 0;
-  }
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 .logo-scale {
@@ -564,7 +564,7 @@ a:focus {
     max-height: fit-content;
     align-self: center;
     justify-content: center;
-/*    position: absolute;
+    /*    position: absolute;
     top: 10%;
     left: 50%;*/
     /*border-bottom: 10pt solid black;*/
@@ -1180,7 +1180,8 @@ h1.white {
         display: none;
     }
 
-    .about-right, .about-left{
+    .about-right,
+    .about-left {
         width: 100%;
         position: relative;
         /*display: inline-block;*/
@@ -1188,20 +1189,24 @@ h1.white {
         justify-content: center;
 
     }
-    
+
+    #og {
+        font-size: 100px;
+    }
+
     /*ul.icons {
     justify-content: center;    
     }*/
-    
+
 
     .about-right {
         align-self: flex-end;
     }
 
-    .logo-scale svg{
+    .logo-scale svg {
         max-height: 100%;
-        top: 100%; 
-    } 
+        top: 100%;
+    }
 
     .project-right {
         width: 100%;
@@ -1672,8 +1677,9 @@ h1.white {
 }
 
 a.animated-underline,
-a.animated-underline:visited{
-    color: #3731DB; /*#5662FF*/ 
+a.animated-underline:visited {
+    color: #3731DB;
+    /*#5662FF*/
     text-decoration: none;
 }
 
