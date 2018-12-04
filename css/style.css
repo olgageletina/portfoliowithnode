@@ -589,7 +589,7 @@ p {
 }
 
 p.small {
-    font-size: 13pt;
+    font-size: calc(1.4vw)
 }
 
 .about-me-text h1 {
