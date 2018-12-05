@@ -1,119 +1,108 @@
-var _ = require('underscore');
-var fs = require('fs');
-
-const generateData = function(thing) {
-        var dataJSON = JSON.parse(thing);
-        return makeListContent(dataJSON)
-        .then(projectsHTML => {
-                // console.log(projectsHTML);
-                return renderTemplate("headHTML", {path:""})
-                    .then(result => {
-                        projectsHTML.headerHTML = result; 
-                        return projectsHTML;
-                    })
-            .then(projectsHTML => {
-                return renderTemplate("index", projectsHTML)
-                .then(finalHTML => {
-                    return finalHTML.toString();
-                });
-
-            });
-        })
-        .catch(err => {
-        console.log('ERRRRRRRR', err);
-        throw err;
-        })
-};
+var _ = require("underscore");
+var fs = require("fs");
+var renderTemplate = require("./helper/render-template");
 
 exports.build = function(features) {
-    return generateData(features);
-};
-
-const renderTemplate = function (_templateName, _data){
-    return new Promise((resolve, reject) => {
-    return fs.readFile("./templates/"+ _templateName + ".html", (err, _templateString) => {
-        if (err) reject(err);
-        var _template =  _.template(_templateString.toString());
-        resolve (_template(_data));
+    var dataJSON = JSON.parse(features);
+    return makeListContent(dataJSON)
+        .then(projectsHTML => {
+            // console.log(projectsHTML);
+            return renderTemplate
+                .build("headHTML", { path: "" })
+                .then(result => {
+                    projectsHTML.headerHTML = result;
+                    return projectsHTML;
+                })
+                .then(projectsHTML => {
+                    return renderTemplate
+                        .build("index", projectsHTML)
+                        .then(finalHTML => {
+                            return finalHTML.toString();
+                        });
+                });
         })
-    })
+        .catch(error => {
+            console.log(`ERROR : template-home :: main build function`);
+            throw error;
+        });
 };
 
-function category(catID, catURL, titleImg, catImgs) {
-            this.catID = catID,
-            this.catURL = catURL,
-            this.titleImg = titleImg,
-            this.catImgs = catImgs
-};
-
-function makeListContent(stuff){
+function makeListContent(stuff) {
     var contentData = [];
-    var contentHTML = {};
+    var indexJSON = {};
     var catArray = [];
-    var titlePromises = []
-    var imagePromises = []
-    var currentCat = '';
-    
+    var titlePromises = [];
+    var imagePromises = [];
+    var currentCat = {};
+
     //process data
-    for (var i=0;i<stuff.rows.length;i++){
+    for (var i = 0; i < stuff.rows.length; i++) {
         var catInfo = stuff.rows[i];
         var catID = stuff.rows[i].icategory;
-        var catIdex = catArray.indexOf(catID);
-        
-        if (catIdex === -1 ) {
-            catArray.push(catID);
-            currentCat = new category(catID, "/category/" + catID, null, []);
-            var currentCatJSOn = JSON.stringify(currentCat)
-            contentData.push(JSON.parse(currentCatJSOn));
-            catIdex = catArray.indexOf(catID); //change catIdex to the current index
-        }  
+        var catIndex = catArray.indexOf(catID);
 
-        if (catInfo.itype === 'title') {
-            contentData[catIdex].titleImg = catInfo.iurl;
-        } else if (catInfo.itype === 'feature') {
-            contentData[catIdex].catImgs.push(catInfo.iurl);
+        if (catIndex === -1) {
+            //new category
+            catArray.push(catID);
+            currentCat = {}; //clear current category
+
+            currentCat.catID = catID;
+            currentCat.catURL = "/category/" + catID;
+            currentCat.catImgs = [];
+            contentData.push(currentCat);
+            catIndex = catArray.indexOf(catID); //change catIdex to the current index
+        }
+
+        if (catInfo.itype === "title") {
+            //check to see the type of image
+
+            contentData[catIndex].titleImg = catInfo.iurl;
+        } else if (catInfo.itype === "feature") {
+            contentData[catIndex].catImgs.push(catInfo.iurl);
         }
     }
 
     //generate HTML
-    for (var i=0;i<contentData.length; i++) {
-        var imgInfo = {};
-        
-        imgInfo.catID = contentData[i].catTag;
-        
-        titlePromises.push(renderTemplate("indexTitleSection", contentData[i]));
-        
-        imagePromises.push(
-        ((j) => {
-        var catImg = contentData[j].catImgs;
-        var catTag = contentData[j].catID;
-            // console.log('catTag',catTag);
-            return renderTemplate("indexImgSection", {items: catImg})
-        .then (result =>  {
-            return renderTemplate("indexImgParent", {imgHTML: result, catID: catTag})
-        })
-        .catch(err => {
-            console.log('ERRRRRRRR', err);
-            throw err;
-        })
-        })(i)) //return a function every i
+    for (var i = 0; i < contentData.length; i++) {
+        titlePromises.push(
+            renderTemplate.build("indexTitleSection", contentData[i])
+        );
 
+        imagePromises.push(
+            (j => {
+                var catImg = contentData[j].catImgs;
+                var catTag = contentData[j].catID;
+                // console.log('catTag',catTag);
+                return renderTemplate
+                    .build("indexImgSection", { items: catImg })
+                    .then(result => {
+                        return renderTemplate.build("indexImgParent", {
+                            imgHTML: result,
+                            catID: catTag
+                        });
+                    })
+                    .catch(error => {
+                        console.log(
+                            `ERROR : template-home :: makeListContent error handling index images`
+                        );
+                        throw error;
+                    });
+            })(i)
+        ); //return a function every i
     }
 
-
-    var getTitles = Promise.all(titlePromises)
-    var getImages = Promise.all(imagePromises)
+    var getTitles = Promise.all(titlePromises);
+    var getImages = Promise.all(imagePromises);
 
     return Promise.all([getTitles, getImages])
-    .then((result) => {
-        var [titlesArr, imagesArr] = result;
-        contentHTML.titleHTML = titlesArr.join('');
-        contentHTML.images = imagesArr.join('');
-        return contentHTML;
-    })
-    .catch(err => {
-    console.log('Error fulfilling promise arrays', err);
-    throw err;
-    })
-};
-
+        .then(result => {
+            var [titlesArr, imagesArr] = result;
+            indexJSON.titleHTML = titlesArr.join("");
+            indexJSON.images = imagesArr.join("");
+            return indexJSON;
+        })
+        .catch(error => {
+            console.log(`ERROR : template-home :: makeListContent`);
+            throw error;
+        });
+}

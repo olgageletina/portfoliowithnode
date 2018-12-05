@@ -1,5 +1,5 @@
 // This is a controller that only relies on a view
-var errorTemplate = require("../views/template-404");
+var errorTemplate = require("../../views/template-404");
 
 exports.get = function(request, response, renderView) {
     renderView.build()

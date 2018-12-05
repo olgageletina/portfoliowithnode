@@ -1,40 +1,22 @@
-var _ = require('underscore');
-var fs = require('fs');
-
-const generateData = function() {
-    var projectsHTML = {};
-    return renderTemplate("headHTML", { path: "" })
-        .then(result => {
-            projectsHTML.headerHTML = result;
-            return projectsHTML;
-        })
-        .then(projectsHTML => {
-            return renderTemplate("about", projectsHTML)
-                .then(finalHTML => {
-                    return finalHTML.toString();
-                })
-        })
-    .catch(err => {
-        console.log('ERRRRRRRR', err);
-        throw err;
-    })
-};
-
-
+var _ = require("underscore");
+var fs = require("fs");
+var renderTemplate = require("./helper/render-template");
 
 exports.build = function() {
-    return generateData();
-};
-
-const renderTemplate = function(_templateName, _data) {
-    return new Promise((resolve, reject) => {
-        return fs.readFile("./templates/" + _templateName + ".html", (err, _templateString) => {
-            if (err) reject(err);
-            var _template = _.template(_templateString.toString());
-            resolve(_template(_data));
+    var errorJSON = {};
+    return renderTemplate //get headHTML in JSON
+        .build("headHTML", {})
+        .then(result => {
+            errorJSON.headerHTML = result;
+            return errorJSON;
         })
-    })
+        .then(errorJSON => { //build the main page
+            return renderTemplate.build("about", errorJSON).then(finalHTML => {
+                return finalHTML.toString();
+            });
+        })
+        .catch(err => {
+            console.log(`ERROR : template-about :: Failure generating view`);
+            throw err;
+        });
 };
-
-
-// generateData().then((success) => console.log(success)).catch((error) => console.log(error));
