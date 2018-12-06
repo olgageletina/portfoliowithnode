@@ -1,30 +1,20 @@
 var _ = require("underscore");
 var fs = require("fs");
-var renderTemplate = require("./helper/render-template");
+// var renderTemplate = require("./helper/render-template");
+var { constructHeader, constructBody, renderTemplate } = require("./helper/HTML-constructor-helpers");
 
 exports.build = function(features) {
     var dataJSON = JSON.parse(features);
     return makeListContent(dataJSON)
-        .then(categoryJSON => {
-            return renderTemplate
-                .build("headHTML", {}) //get headHTML in JSON
-                .then(result => {
-                    categoryJSON.headerHTML = result;
-                    return categoryJSON;
-                })
-                .then(categoryJSON => { //build the main page
-                    return renderTemplate
-                        .build("category", categoryJSON)
-                        .then(finalHTML => {
-                            return finalHTML.toString();
-                        });
-                });
-        })
+        .then(dataJSON => constructHeader('category', dataJSON))
+        .then(dataJSON => constructBody('category', dataJSON))
         .catch(error => {
-            console.log(`ERROR : template-category :: main build function`);
+            console.log(`ERROR : template-category :: main build function ${error}`);
             throw error;
         });
 };
+
+
 
 function makeListContent(stuff) {
     var categoryJSON = {};
@@ -46,8 +36,9 @@ function makeListContent(stuff) {
             "/projects/" +
             itemInfo.slug;
 
-        titlePromises.push(renderTemplate.build("titleDiv", itemInfo));
-        imagePromises.push(renderTemplate.build("imageDiv", itemInfo));
+        // console.log(renderTemplate);
+        titlePromises.push(renderTemplate("titleDiv", itemInfo));
+        imagePromises.push(renderTemplate("imageDiv", itemInfo));
     }
 
     var getTitles = Promise.all(titlePromises);

@@ -1,7 +1,40 @@
 var _ = require("underscore");
 var fs = require("fs");
+// var renderTemplate = require('./render-template');
 
-const renderTemplate = function(_templateName, _data) {
+
+function constructHeader(templateName, dataJSON) {
+    return renderTemplate('headHTML', dataJSON)
+        .then(result => {
+            // console.log(dataJSON);
+            return Object.assign({}, dataJSON, { headerHTML: result })
+        }).catch(error => {
+            console.log(
+                `ERROR : template-${templateName} :: constructHeader error rendering headHTML`
+            );
+            throw error;
+        });
+}
+
+module.exports.constructHeader = constructHeader;
+
+
+function constructBody(templateName, dataJSON) {
+    // console.log(dataJSON);
+    return renderTemplate(templateName, dataJSON)
+        .then(finalHTML => {
+            return finalHTML.toString();
+        })
+        .catch(error => {
+            console.log(`ERROR : template-${templateName} :: constructBody error rendering headHTML`);
+            throw error;
+        });
+}
+
+module.exports.constructBody = constructBody;
+
+
+function renderTemplate(_templateName, _data) {
     return new Promise((resolve, reject) => {
         return fs.readFile(
             "./templates/" + _templateName + ".html",
@@ -32,8 +65,4 @@ const renderTemplate = function(_templateName, _data) {
     });
 };
 
-
-
-exports.build = function(_template, _data) {
-    return renderTemplate(_template, _data);
-};
+module.exports.renderTemplate = renderTemplate;
