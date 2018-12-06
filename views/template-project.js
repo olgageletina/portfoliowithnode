@@ -1,29 +1,12 @@
-var _ = require("underscore");
-var fs = require("fs");
-var renderTemplate = require("./helper/render-template");
+var { constructHeader, constructBody, renderTemplate } = require("./helper/HTML-constructor-helpers");
 
 exports.build = function(features) {
     var dataJSON = JSON.parse(features);
-    // console.log(datainput);
     return makeListContent(dataJSON)
-        .then(projectJSON => {
-            // console.log(projectsHTML);
-            return renderTemplate
-                .build("headHTML", { path: "" })
-                .then(result => {
-                    projectJSON.headerHTML = result;
-                    return projectJSON;
-                })
-                .then(projectJSON => {
-                    return renderTemplate
-                        .build("project", projectJSON)
-                        .then(finalHTML => {
-                            return finalHTML.toString();
-                        });
-                });
-        })
+        .then(dataJSON => constructHeader('project', dataJSON))
+        .then(dataJSON => constructBody('project', dataJSON))
         .catch(error => {
-            console.log(`ERROR : template-project :: main build function`);
+            console.log(`ERROR : template-project :: main build function ${error}`);
             throw error;
         });
 };
@@ -43,11 +26,11 @@ function makeListContent(stuff) {
             projectJSON.aboutHTML = pInfo.atext;
         } else if (pInfo.csection === "iframe") {
             contentPromises.push(
-                renderTemplate.build("projectIframe", { imgURL: pInfo.img })
+                renderTemplate("projectIframe", { imgURL: pInfo.img })
             ); //push promise to promise array
         } else if (pInfo.csection === "full") {
             contentPromises.push(
-                renderTemplate.build("projectFull", {
+                renderTemplate("projectFull", {
                     imgURL: pInfo.img,
                     text: pInfo.divtext,
                     catID: pInfo.pcat
@@ -55,7 +38,7 @@ function makeListContent(stuff) {
             ); //push promise to promise array
         } else if (pInfo.csection === "left") {
             contentPromises.push(
-                renderTemplate.build("projectLeft", {
+                renderTemplate("projectLeft", {
                     imgURL: pInfo.img,
                     text: pInfo.divtext,
                     catID: pInfo.pcat
@@ -63,7 +46,7 @@ function makeListContent(stuff) {
             ); //push promise to promise array
         } else if (pInfo.csection === "right") {
             contentPromises.push(
-                renderTemplate.build("projectRight", {
+                renderTemplate("projectRight", {
                     imgURL: pInfo.img,
                     text: pInfo.divtext,
                     catID: pInfo.pcat

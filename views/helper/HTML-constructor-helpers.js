@@ -39,9 +39,7 @@ function renderTemplate(_templateName, _data) {
         return fs.readFile(
             "./templates/" + _templateName + ".html",
             (err, _templateString) => {
-                //when testing locally make sure that the path is adjusted as needed
-                // console.log(_templateString);
-                // console.log(err);
+                //NOTE TO SELF: when testing locally make sure that the path is adjusted as needed
                 if (err) {
                     // console.log('mooooooooo')
                     reject(err);

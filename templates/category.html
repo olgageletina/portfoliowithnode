@@ -5,13 +5,13 @@
         <title>OG porfolio</title>
         <%= headerHTML %>
         <!--
-            <script type="text/javascript" src="../projectPage.js"></script>
+            <script type="text/javascript" src="put the scripting at the bottom into a seprate file here"></script>
         -->
     </head>
 
     <body>
         <div class="portal-wrap reveal">
-            <ul class="video-projects">
+            <ul class="video-projects" id='whatever'>
                 <div class="title-wrap <%= catID %>-bg"><%= titleHTML %></div>
                 <div class="images"><%= images %></div>
             </ul>
@@ -40,8 +40,28 @@
     <script type="text/javascript">
         let currentElem = null;
         var container = document.querySelector(".portal-wrap");
+
+        function is_touch_device() { //test for touch device
+            return (
+                "ontouchstart" in window ||
+                navigator.MaxTouchPoints > 0 ||
+                navigator.msMaxTouchPoints > 0
+            );
+        }
+
+
+        switch (is_touch_device()) { //develop mobile functionality here
+            case true:
+
+            case false:
+
+        }
+
         
+
+
         var elID = null;
+        backgroundImg = document.getElementById("whatever");
 
         container.onmouseover = function(event) {
             if (currentElem) {
@@ -57,9 +77,12 @@
             // yeah we're inside <span> now
             currentElem = target;
             elID = target.id;
+             
             elements = document.querySelectorAll("#" + elID);
+            bgImage =  elements[1].style.backgroundImage;
 
-            elements[1].style.display = null;
+
+            backgroundImg.style.backgroundImage = bgImage;
         };
 
         container.onmouseout = function(event) {
@@ -78,7 +101,9 @@
                 }
             }
 
-            elements[1].style.display = "none"; //do whatever on mouse out
+            backgroundImg.style.backgroundImage = null;
+
+            // elements[1].style.display = "none"; //do whatever on mouse out
 
             currentElem = null;
             elID = null;

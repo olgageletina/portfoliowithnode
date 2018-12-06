@@ -1,6 +1,3 @@
-var _ = require("underscore");
-var fs = require("fs");
-// var renderTemplate = require("./helper/render-template");
 var { constructHeader, constructBody, renderTemplate } = require("./helper/HTML-constructor-helpers");
 
 exports.build = function(features) {

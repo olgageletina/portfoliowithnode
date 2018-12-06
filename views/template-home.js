@@ -1,28 +1,12 @@
-var _ = require("underscore");
-var fs = require("fs");
-var renderTemplate = require("./helper/render-template");
+var { constructHeader, constructBody, renderTemplate } = require("./helper/HTML-constructor-helpers");
 
 exports.build = function(features) {
     var dataJSON = JSON.parse(features);
     return makeListContent(dataJSON)
-        .then(projectsHTML => {
-            // console.log(projectsHTML);
-            return renderTemplate
-                .build("headHTML", { path: "" })
-                .then(result => {
-                    projectsHTML.headerHTML = result;
-                    return projectsHTML;
-                })
-                .then(projectsHTML => {
-                    return renderTemplate
-                        .build("index", projectsHTML)
-                        .then(finalHTML => {
-                            return finalHTML.toString();
-                        });
-                });
-        })
+        .then(dataJSON => constructHeader('index', dataJSON))
+        .then(dataJSON => constructBody('index', dataJSON))
         .catch(error => {
-            console.log(`ERROR : template-home :: main build function`);
+            console.log(`ERROR : template-home :: main build function ${error}`);
             throw error;
         });
 };
@@ -65,7 +49,7 @@ function makeListContent(stuff) {
     //generate HTML
     for (var i = 0; i < contentData.length; i++) {
         titlePromises.push(
-            renderTemplate.build("indexTitleSection", contentData[i])
+            renderTemplate("indexTitleSection", contentData[i])
         );
 
         imagePromises.push(
@@ -73,10 +57,9 @@ function makeListContent(stuff) {
                 var catImg = contentData[j].catImgs;
                 var catTag = contentData[j].catID;
                 // console.log('catTag',catTag);
-                return renderTemplate
-                    .build("indexImgSection", { items: catImg })
+                return renderTemplate("indexImgSection", { items: catImg })
                     .then(result => {
-                        return renderTemplate.build("indexImgParent", {
+                        return renderTemplate("indexImgParent", {
                             imgHTML: result,
                             catID: catTag
                         });

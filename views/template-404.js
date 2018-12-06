@@ -1,22 +1,11 @@
-var _ = require("underscore");
-var fs = require("fs");
-var renderTemplate = require("./helper/render-template");
+var { constructHeader, constructBody, renderTemplate } = require("./helper/HTML-constructor-helpers");
 
 exports.build = function() {
-    var errorJSON = {};
-    return renderTemplate //get headHTML in JSON
-        .build("headHTML", {})
-        .then(result => {
-            errorJSON.headerHTML = result;
-            return errorJSON;
-        })
-        .then(errorJSON => { //build the main page
-            return renderTemplate.build("404", errorJSON).then(finalHTML => {
-                return finalHTML.toString();
-            });
-        })
-        .catch(err => {
-            console.log(`ERROR : template-404 :: Failure generating view`);
-            throw err;
+    dataJSON = {};
+    return constructHeader('404', dataJSON)
+        .then(dataJSON => constructBody('404', dataJSON))
+        .catch(error => {
+            console.log(`ERROR : template-404 :: main build function ${error}`);
+            throw error;
         });
 };
