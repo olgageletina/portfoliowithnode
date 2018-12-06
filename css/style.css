@@ -1174,6 +1174,23 @@ h1.white {
 
     }
 
+    .p-container-right,
+    .p-container-left,
+    .vertical-right img,
+    .vertical-left img {
+        width: 100%;
+        padding: 0px;
+    }
+
+
+    /*.full-content-container,
+    .vertical-left,
+    .vertical-right,
+    .container-iframe-outer {
+        padding: 20px 10px 20px 10px;
+
+    }*/
+
     #og {
         font-size: 100px;
     }
@@ -2148,13 +2165,13 @@ footer {
     outline: 2000px solid white;
 }
 
-@font-face {
+/*@font-face {
     font-family: 'lovevideo';
     src: url('./font/lovevideo.eot');
     src: url('./font/lovevideo.eot?#iefix') format('embedded-opentype'), url('./font/lovevideo.woff') format('woff'), url('./font/lovevideo.ttf') format('truetype'), url('./font/lovevideo.svg#lovevideo') format('svg');
     font-weight: normal;
     font-style: normal;
-}
+}*/
 
 body.player-body {
     background-color: white;
