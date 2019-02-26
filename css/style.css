@@ -106,6 +106,7 @@ embed {
 /* force a vertical scrollbar to prevent a jumpy page */
 html {
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 ul {
@@ -140,7 +141,8 @@ del {
 abbr[title],
 dfn[title] {
     border-bottom: 1px dotted #000;
-    cursor: help;
+    cursor: default;	
+    /*help;*/
 }
 
 /* tables still need cellspacing="0" in the markup */
@@ -259,9 +261,9 @@ label,
 input[type=button],
 input[type=submit],
 input[type=file],
-button {
+/*button {
     cursor: pointer;
-}
+}*/
 
 /* Webkit browsers add a 2px margin outside the chrome of form elements */
 button,
@@ -859,7 +861,8 @@ h1.white {
     top: 10px;
     right: 24px;
     z-index: 5000;
-    cursor: pointer;
+    cursor: default;
+    /*pointer;*/
     font-family: arial;
     font-size: 50px;
     color: black;
@@ -957,7 +960,8 @@ h1.white {
 
 .portals-type {
     z-index: 8;
-    cursor: pointer;
+    cursor: default;
+    /*pointer;*/
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -1307,7 +1311,8 @@ h1.white {
     float: left;
     width: 100%;
     height: 100%;
-    cursor: pointer;
+    cursor: default;
+    /*pointer;*/
     overflow: hidden;
 }
 
@@ -1506,7 +1511,8 @@ h1.white {
     display: inline-block;
     width: 28%;
     margin-top: 48px;
-    cursor: pointer;
+    cursor: none;
+    /*pointer;*/
     text-align: left;
 }
 
@@ -1667,7 +1673,8 @@ h1.white {
     width: 100%;
     height: 100%;
     z-index: 100;
-    cursor: default;
+    cursor: none; 
+    /*default;*/
 }
 
 .text.clear {
@@ -1960,7 +1967,8 @@ footer {
     left: 0;
     bottom: 0;
     z-index: 20;
-    cursor: pointer;
+    cursor: default;
+    /*pointer;*/
 }
 
 .charms-projects.hide {
@@ -2190,7 +2198,8 @@ body.player-body {
     width: 100%;
     height: 100%;
     background-color: transparent;
-    cursor: pointer;
+    cursor: default;
+    /*pointer;*/
 }
 
 .video-js.black {
