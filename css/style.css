@@ -132,6 +132,7 @@ a {
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
+    cursor: default;
 }
 
 del {
@@ -1220,6 +1221,7 @@ h1.white {
 
     html {
         overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
     }
 
     .full-content-title {
