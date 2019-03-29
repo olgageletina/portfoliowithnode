@@ -1197,9 +1197,9 @@ menu-item:nth-child(1) {
 @media screen and (max-width: 600px) {
 
     .about-me {
-        height: 100%;
+        height: 100% !important;
     }
-    
+
     .about-project-left {
         min-width: 100%;
         height: auto;
