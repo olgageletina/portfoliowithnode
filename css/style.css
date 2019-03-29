@@ -1200,6 +1200,10 @@ menu-item:nth-child(1) {
         height: 100% !important;
     }
 
+    .about-me, .about-project,  .text-content-container {
+        padding: 50px 25px 50px 25px !important;
+    }
+
     .about-project-left {
         min-width: 100%;
         height: auto;
@@ -1244,10 +1248,6 @@ menu-item:nth-child(1) {
 
     .text-content-container-altpadding {
         padding: 0px !important;
-    }
-
-    .text-content-container {
-        padding: 50px !important;
     }
 
     .project-assets-text {
