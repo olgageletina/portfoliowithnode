@@ -2,6 +2,7 @@ var { constructHeader, constructBody, renderTemplate } = require("./helper/HTML-
 
 exports.build = function(features) {
     var dataJSON = JSON.parse(features);
+    console.log(dataJSON);
     return makeListContent(dataJSON)
         .then(dataJSON => constructHeader('index', dataJSON))
         .then(dataJSON => constructBody('index', dataJSON))
@@ -31,7 +32,7 @@ function makeListContent(stuff) {
             currentCat = {}; //clear current category
 
             currentCat.catID = catID;
-            currentCat.catURL = "/category/" + catID;
+            currentCat.catURL = "/" + catID;
             currentCat.catImgs = [];
             contentData.push(currentCat);
             catIndex = catArray.indexOf(catID); //change catIdex to the current index

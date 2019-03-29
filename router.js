@@ -60,8 +60,8 @@ function testPath(url, request, response) {
         "materials"
     ];
 
-    var projectId = url.split("/")[4];
-    var catId = url.split("/")[2];
+    var projectId = url.split("/")[3];
+    var catId = url.split("/")[1];
 
     // console.log("project: " + projectId + " category: " + catId + " " + url);
 

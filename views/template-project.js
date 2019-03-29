@@ -1,9 +1,10 @@
-var { constructHeader, constructBody, renderTemplate } = require("./helper/HTML-constructor-helpers");
+var { constructHeader, constructMenu, constructBody, renderTemplate } = require('./helper/HTML-constructor-helpers');
 
 exports.build = function(features) {
     var dataJSON = JSON.parse(features);
     return makeListContent(dataJSON)
         .then(dataJSON => constructHeader('project', dataJSON))
+        .then(dataJSON => constructMenu('project', dataJSON))
         .then(dataJSON => constructBody('project', dataJSON))
         .catch(error => {
             console.log(`ERROR : template-project :: main build function ${error}`);
@@ -14,50 +15,74 @@ exports.build = function(features) {
 function makeListContent(stuff) {
     var projectJSON = {};
     var contentPromises = []; //create a promise array
+    var headerPromise;
 
     //process data
     for (var i = 0; i < stuff.rows.length; i++) {
         var pInfo = stuff.rows[i];
         projectJSON.ptitle = pInfo.pname;
-        projectJSON.catID = pInfo.pcat;
+        projectJSON.catID = pInfo.icategory;
+        projectJSON.pSlug = pInfo.pslug;
 
         if (pInfo.csection === "about") {
             projectJSON.year = pInfo.year;
             projectJSON.aboutHTML = pInfo.atext;
         } else if (pInfo.csection === "iframe") {
-            contentPromises.push(
-                renderTemplate("projectIframe", { imgURL: pInfo.img })
-            ); //push promise to promise array
-        } else if (pInfo.csection === "full") {
-            contentPromises.push(
-                renderTemplate("projectFull", {
+            if (pInfo.type === "header") {
+                headerPromise = renderTemplate("projectHeaderIframe", {
                     imgURL: pInfo.img,
-                    text: pInfo.divtext,
-                    catID: pInfo.pcat
+                    pslug: pInfo.iframeid,
+                    fimageURL: pInfo.fimg
+                })
+            } else {
+                contentPromises.push(
+                    renderTemplate("projectHeaderIframe", {
+                        imgURL: pInfo.img,
+                        pslug: pInfo.iframeid,
+                        fimageURL: pInfo.fimg
+                    })
+                ); //push promise to promise array
+
+            }
+        } else if (pInfo.type === "header" && pInfo.csection !== "iframe") {
+            headerPromise = renderTemplate("projectHeaderImg", {fimageURL: pInfo.fimg})
+
+        } else if (pInfo.csection === "text" && pInfo.type === "main") {
+            contentPromises.push(
+                renderTemplate("projectText", {
+                    pText: pInfo.divtext
                 })
             ); //push promise to promise array
-        } else if (pInfo.csection === "left") {
+        } 
+        else if (pInfo.csection === "image" && pInfo.type !== "header") {
             contentPromises.push(
-                renderTemplate("projectLeft", {
-                    imgURL: pInfo.img,
-                    text: pInfo.divtext,
-                    catID: pInfo.pcat
-                })
-            ); //push promise to promise array
-        } else if (pInfo.csection === "right") {
-            contentPromises.push(
-                renderTemplate("projectRight", {
-                    imgURL: pInfo.img,
-                    text: pInfo.divtext,
-                    catID: pInfo.pcat
-                })
-            ); //push promise to promise array
+            (j => {
+                var pImg = pInfo.img.toString().split(",");
+                return renderTemplate("projectImgSection", { items: pImg })
+                    .then(result => {
+                        return renderTemplate("projectImgParent", {
+                            imgHTML: result
+                        });
+                    })
+                    .catch(error => {
+                        console.log(
+                            `ERROR : template-home :: makeListContent error handling project images`
+                        );
+                        throw error;
+                    });
+            })(i)
+        );
         }
     }
 
-    return Promise.all(contentPromises)
+    var contentPromises = Promise.all(contentPromises);
+
+    return Promise.all([contentPromises, headerPromise])
         .then(result => {
-            projectJSON.rightHTML = result.join("");
+            var [contentPromisesArr, headerPromise] = result;
+            
+            projectJSON.mainHTML = contentPromisesArr.join("");
+            projectJSON.projectHeader = headerPromise;
             return projectJSON;
         })
         .catch(error => {

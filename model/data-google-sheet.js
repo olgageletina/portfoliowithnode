@@ -2,7 +2,9 @@
 // made by using this precedent: https://github.com/55sketch/gsx2json/blob/master/api.js
 // and this one: https://www.tomas-dvorak.cz/posts/nodejs-request-without-dependencies/
 
-const speadSheetID = "1s3noi79O9Z9k19jLVm0x34zkIi5wSVzHqLNUptRFuMM";
+const speadSheetID = "1e64T7PGXpbBHJKgs13sICDfVQtZdFjemCyxS-VZrHZE";
+
+//fomer database: https://docs.google.com/spreadsheets/d/1s3noi79O9Z9k19jLVm0x34zkIi5wSVzHqLNUptRFuMM/edit?usp=sharing
 var https = require('https');
 
 function makeNeatJSON(data, qry) {

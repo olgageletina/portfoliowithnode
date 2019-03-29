@@ -1,9 +1,10 @@
-var { constructHeader, constructBody, renderTemplate } = require("./helper/HTML-constructor-helpers");
+var { constructHeader, constructMenu, constructBody, renderTemplate } = require('./helper/HTML-constructor-helpers');
 
 exports.build = function(features) {
     var dataJSON = JSON.parse(features);
     return makeListContent(dataJSON)
         .then(dataJSON => constructHeader('category', dataJSON))
+        .then(dataJSON => constructMenu('category', dataJSON))
         .then(dataJSON => constructBody('category', dataJSON))
         .catch(error => {
             console.log(`ERROR : template-category :: main build function ${error}`);
@@ -16,38 +17,42 @@ exports.build = function(features) {
 function makeListContent(stuff) {
     var categoryJSON = {};
 
-    var titlePromises = [];
-    var imagePromises = [];
+
+    var catPromises = [];
+    // var titlePromises = [];
+    // var imagePromises = [];
 
     for (var i = 0; i < stuff.rows.length; i++) {
         var itemInfo = {
             name: stuff.rows[i].pname,
             imageURL: stuff.rows[i].pimgurl,
             slug: stuff.rows[i].purl,
-            catID: stuff.rows[i].pcategory
+            catID: stuff.rows[i].icategory
         };
 
         itemInfo.url =
-            "/category/" +
-            stuff.rows[i].pcategory +
+            "/" +
+            itemInfo.catID +
             "/projects/" +
             itemInfo.slug;
 
         // console.log(renderTemplate);
-        titlePromises.push(renderTemplate("titleDiv", itemInfo));
-        imagePromises.push(renderTemplate("imageDiv", itemInfo));
+        catPromises.push(renderTemplate("categoryDiv", itemInfo));
+        // imagePromises.push(renderTemplate("imageDiv", itemInfo));
     }
 
-    var getTitles = Promise.all(titlePromises);
-    var getImages = Promise.all(imagePromises);
+    var catPromises = Promise.all(catPromises);
+    // var getImages = Promise.all(imagePromises);
+    // Promise.all([getTitles, getImages])
+    // [titlesArr, imagesArr]
 
-    return Promise.all([getTitles, getImages])
+    return catPromises
         .then(result => {
             // console.log(result);
             categoryJSON.catID = itemInfo.catID;
-            var [titlesArr, imagesArr] = result;
-            categoryJSON.titleHTML = titlesArr.join("");
-            categoryJSON.images = imagesArr.join("");
+            var catArray = result;
+            categoryJSON.categoryHTML = catArray.join("");
+            // categoryJSON.images = imagesArr.join("");
             // throw new Error('mooooooooo');
             return categoryJSON;
         })

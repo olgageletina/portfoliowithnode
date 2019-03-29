@@ -1,33 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<%= headerHTML %>
-</head>
-<body>
-	<div class="portal-wrap reveal individual">
-		<div class="about-project-left <%= catID %>-bg">
-			<div class="about-text">
-				<h1 id="name"><%= ptitle %></h1>
-				<p id="year"><%= year %></p><br>
-				<p class="small" ><%= aboutHTML %></p>
-			</div>
-		</div>
-		<div class="project-right">
-			<div class="project-content">
-				
-				<%= rightHTML %>
 
-			</div>
-		</div>
-	</div> 
-	<a href="../" class="back">
-		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 64.4 56.6" style="enable-background:new 0 0 64.4 56.6;" xml:space="preserve">
-		<g id="a">
-			<polygon id="black" points="0,28.3 28.3,0 35.4,7.1 18.9,23.6 64.4,23.6 64.4,33.6 19.4,33.6 35.4,49.5 28.3,56.6 	"/>
-		</g>
-		</svg>
-	</a>
+<head>
+    <meta charset="UTF-8">
+    <%= headerHTML %>
+</head>
+
+<body>
+    <%= menu %>
+    <%= projectHeader %>
+    <div class="about-project">
+        <div class="about-details">
+            <h1 id="name">
+                <%= ptitle %>
+            </h1>
+            <p id="year">
+                <%= year %>
+            </p><br>
+        </div>
+        <div class="about-description">
+            <p class="about-text">
+                <%= aboutHTML %>
+            </p>
+        </div>
+    </div>
+    <%= mainHTML %>
 </body>
+<script>
+function closePlayer(closedID) {
+    var videoElemID = closedID.substring(0, closedID.lastIndexOf('-')) + '-player';
+    var video = document.getElementById(videoElemID.toString());
+    stopVideo(video);
+    video.style.display = "none";
+}
+
+function stopVideo(element) {
+    var iframe = element.querySelector('iframe');
+    var video = element.querySelector('video');
+    if (iframe !== null) {
+        var iframeSrc = iframe.src;
+        iframe.src = iframeSrc;
+    }
+    if (video !== null) {
+        video.pause();
+    };
+
+}
+
+function openPlayer(clickedID) {
+    var videoElemID = clickedID.substring(0, clickedID.lastIndexOf('-')) + '-player';
+    var video = document.getElementById(videoElemID);
+    video.style.display = "block";
+}
+</script>
+
 </html>

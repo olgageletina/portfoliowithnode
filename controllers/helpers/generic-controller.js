@@ -1,6 +1,6 @@
 // This is a controller that requires a call to the google sheet
-var errorTemplate = require("../../views/template-404");
-var test_data = require("../../model/data-google-sheet");
+var errorTemplate = require('../../views/template-404');
+var test_data = require('../../model/data-google-sheet');
 var data = {};
 
 exports.get = function(request, response, renderView) {

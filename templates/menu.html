@@ -1,0 +1,47 @@
+<ul class="menu">
+    <li class="menu-item" id="back-menu-item">
+        <a href="../"><img src="https://s3.amazonaws.com/geletina-images/back.svg" /></a>
+    </li>
+    <li class="menu-item" id="web-mobile-menu-item">
+        <a href="/web-mobile"><img src="https://s3.amazonaws.com/geletina-images/web-mobile.svg" /></a>
+    </li>
+    <li class="menu-item" id="hardware-menu-item">
+        <a href="/hardware"><img src="https://s3.amazonaws.com/geletina-images/hardware.svg" /></a>
+    </li>
+    <li class="menu-item" id="materials-menu-item">
+        <a href="/materials"><img src="https://s3.amazonaws.com/geletina-images/materials.svg" /></a>
+    </li>
+    <li class="menu-item" id="software-menu-item">
+        <a href="/software"><img src="https://s3.amazonaws.com/geletina-images/software.svg" /></a>
+    </li>
+    <li class="menu-item" id="still-motion-menu-item">
+        <a href="/still-motion"><img src="https://s3.amazonaws.com/geletina-images/still-motion.svg" /></a>
+    </li>
+    <li class="menu-item" id="about-menu-item">
+        <a href="/about"><img src="https://s3.amazonaws.com/geletina-images/about.svg" /></a>
+    </li>
+</ul>
+<script>
+var activeCat = "<%= catID %>" + '-menu-item';
+var activeMenuElem = document.getElementById(activeCat);
+// console.log(activeMenuElem);
+
+switch (true) {
+    case activeCat === 'web-mobile-menu-item':
+        activeMenuElem.style.backgroundColor = '#3F36EC'
+        break;
+    case activeCat === 'hardware-menu-item':
+        activeMenuElem.style.backgroundColor = '#152028'
+        break;
+    case activeCat === 'materials-menu-item':
+        activeMenuElem.style.backgroundColor = '#310C80'
+        break;
+    case activeCat === 'software-menu-item':
+        activeMenuElem.style.backgroundColor = '#3E5C6F'
+        break;
+    case activeCat === 'still-motion-menu-item':
+        activeMenuElem.style.backgroundColor = '#A90048'
+        break;
+}
+
+</script>
