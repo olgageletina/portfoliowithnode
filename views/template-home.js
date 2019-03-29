@@ -2,7 +2,7 @@ var { constructHeader, constructBody, renderTemplate } = require("./helper/HTML-
 
 exports.build = function(features) {
     var dataJSON = JSON.parse(features);
-    console.log(dataJSON);
+    // console.log(dataJSON);
     return makeListContent(dataJSON)
         .then(dataJSON => constructHeader('index', dataJSON))
         .then(dataJSON => constructBody('index', dataJSON))
