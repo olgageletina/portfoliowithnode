@@ -13,7 +13,7 @@ This is a repository for my personal website. Built with Node.js, without the us
 |__Router__      | parses URL, adds query terms to request, and sends to appropriate controller parses URL, adds query terms to request, and sends to appropriate controller      |   router.js |
 |__Conroller__ | requests data from model sends it to the view, then sends the view HTML response back up the chain      |    /controllers* |
 |__View__ | renders the response      |    /views* |
-|__Model__ | [Google sheets back end](https://docs.google.com/spreadsheets/d/1s3noi79O9Z9k19jLVm0x34zkIi5wSVzHqLNUptRFuMM/edit?usp=sharing) parses request to query appropriate data      |    /model/test-data-google-sheet.js |
+|__Model__ | [Google sheets back end](https://docs.google.com/spreadsheets/d/1e64T7PGXpbBHJKgs13sICDfVQtZdFjemCyxS-VZrHZE) parses request to query appropriate data      |    /model/test-data-google-sheet.js |
 
 ## Notes on deployment to Google App Engine:
 Before deploying the app, make sure:
