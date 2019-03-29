@@ -346,7 +346,7 @@ html {
 }*/
 
 body {
-    background-color: white;
+    background-color: transparent !important;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -359,8 +359,8 @@ a:focus {
 }
 
 .home-wrap {
-    position: fixed;
-    /*  display: inline-table;*/
+    /*position: fixed;*/
+    display: inline-table;
     top: 0;
     right: 0;
     left: 0;
@@ -1195,6 +1195,11 @@ menu-item:nth-child(1) {
 }
 
 @media screen and (max-width: 600px) {
+
+    .about-me {
+        height: 100%;
+    }
+    
     .about-project-left {
         min-width: 100%;
         height: auto;
