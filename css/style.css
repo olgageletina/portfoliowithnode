@@ -468,7 +468,7 @@ a:focus {
 }
 
 .about-me {
-    padding: 40px;
+    padding: 50px;
     width: 100%;
 }
 
@@ -1256,11 +1256,11 @@ menu-item:nth-child(1) {
 
 
     .about-project-altpadding {
-        padding: 50px 0 0 0 !important;
+        padding: 25px 0 0 0 !important;
     }
 
     .about-details, .about-description { 
-        padding: 0 !important;
+        padding: 0 0 25px 0 !important;
         width: 100% !important;
     }
 
