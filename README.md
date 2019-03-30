@@ -3,7 +3,7 @@
 
 This is a repository for my personal website. Built with Node.js, without the use of any additional frameworks.
 
-## Here's how it works:
+## How it works:
 ![portfolio architecture-final](https://s3.amazonaws.com/geletina-images/portfolio-architecture.png)
 
 
