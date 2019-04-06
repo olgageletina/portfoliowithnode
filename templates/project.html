@@ -26,10 +26,18 @@
     </div>
     <%= mainHTML %>
 </body>
+
+
+<script src="https://player.vimeo.com/api/player.js"></script>
 <script>
 function closePlayer(closedID) {
     var videoElemID = closedID.substring(0, closedID.lastIndexOf('-')) + '-player';
     var video = document.getElementById(videoElemID.toString());
+    var iframe = video.querySelector('iframe');
+    var iframeSrc = setUrlParameter(iframe.src, 'autoplay', 0);
+    iframe.src = iframeSrc;
+
+    console.log(video);
     stopVideo(video);
     video.style.display = "none";
 }
@@ -44,14 +52,31 @@ function stopVideo(element) {
     if (video !== null) {
         video.pause();
     };
-
 }
 
 function openPlayer(clickedID) {
     var videoElemID = clickedID.substring(0, clickedID.lastIndexOf('-')) + '-player';
     var video = document.getElementById(videoElemID);
+    var iframe = video.querySelector('iframe');
+    var iframeSrcAp = setUrlParameter(iframe.src, 'autoplay', 1);
+
     video.style.display = "block";
+    iframe.src = iframeSrcAp;
 }
+
+
+
+function setUrlParameter(url, name, val) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(url);
+    if (results !== null) {
+        return url.substring(0,results.index) + '&' + name + '=' + val;
+    } 
+
+    return url+'&' + name + '=' + val;
+};
+
 </script>
 
 </html>
