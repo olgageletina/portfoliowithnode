@@ -76,10 +76,10 @@ summary {
 }
 
 /*body,*/
-body {
-    overflow: auto;
+/*body {
+    overflow: auto;*/
 /*  background-color: white !important; */
-}
+/*}*/
 
 /* consider resetting the default cursor: https://gist.github.com/murtaugh/5247154 */
 article,
@@ -1004,6 +1004,9 @@ h1.white, .white {
 .portals-type .hardware,
 .hardware-bg, #hardware-menu-item:hover {
     background-color: #152028;
+    /*border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;*/
 }
 
 /*.hardware-border {
@@ -1013,15 +1016,20 @@ h1.white, .white {
 .portals-type .software,
 .software-bg, #software-menu-item:hover {
     background-color: #3E5C6F;
+ /*   border-top: 1px solid white;
+    border-right: 1px solid white;*/
 }
 
 /*.software-border {
     border-bottom: 10pt solid #71D9B3;
 }*/
 
-.portals-type .still-motion,
+.portals-type .still-motion, 
 .still-motion-bg, #still-motion-menu-item:hover {
     background-color: #A90048;
+    /*border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;*/
 }
 
 /*.still-motion-border {
@@ -1031,6 +1039,8 @@ h1.white, .white {
 .portals-type .materials,
 .materials-bg, #materials-menu-item:hover {
     background-color: #310C80;
+    /*border-bottom: 1px solid white;
+    border-left: 1px solid white;*/
 }
 
 /*.materials-border {
@@ -1040,6 +1050,8 @@ h1.white, .white {
 .portals-type .web-mobile,
 .web-mobile-bg, #web-mobile-menu-item:hover {
     background-color: #3F36EC;
+    /*border-right: 1px solid white;
+    border-bottom: 1px solid white;*/
 }
 
 /*.web-mobile-border {
@@ -1049,6 +1061,8 @@ h1.white, .white {
 .portals-type .about,
 .about-bg {
     background-color: black;
+/*    border-top: 1px solid white;
+    border-left: 1px solid white;*/
 }
 
 .about-border {
@@ -1060,18 +1074,17 @@ h1.white, .white {
 }
 
 
-.menu-item {
+.menu-item:nth-child(1) {
+    background-color: white;
+}
+
+.menu-item:nth-child(n+2) {
     background-color: black;
 }
 
-.menu-item:nth-child(n) {
-    /*border-right: 1px solid white;*/
-    border-bottom: 1px solid white;
-}
-
-.menu-item:last-child {
+/*.menu-item:last-child {
     border-right: none;
-}
+}*/
 
 .portals-type .title {
     position: absolute;
@@ -2550,6 +2563,7 @@ body.player-body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border-bottom: 2px solid white;
 }
 
 .menu-item {

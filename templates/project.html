@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id='project-page-html'>
 
 <head>
     <meta charset="UTF-8">
@@ -26,20 +26,18 @@
     </div>
     <%= mainHTML %>
 </body>
-
-
-<script src="https://player.vimeo.com/api/player.js"></script>
 <script>
 function closePlayer(closedID) {
     var videoElemID = closedID.substring(0, closedID.lastIndexOf('-')) + '-player';
     var video = document.getElementById(videoElemID.toString());
     var iframe = video.querySelector('iframe');
     var iframeSrc = setUrlParameter(iframe.src, 'autoplay', 0);
+    var wholePage = document.getElementById('project-page-html');
     iframe.src = iframeSrc;
-
-    console.log(video);
+    
     stopVideo(video);
-    video.style.display = "none";
+    wholePage.style.overflowY = 'scroll';
+    video.style.display = 'none';
 }
 
 function stopVideo(element) {
@@ -59,9 +57,15 @@ function openPlayer(clickedID) {
     var video = document.getElementById(videoElemID);
     var iframe = video.querySelector('iframe');
     var iframeSrcAp = setUrlParameter(iframe.src, 'autoplay', 1);
+    var wholePage = document.getElementById('project-page-html');
 
-    video.style.display = "block";
+    console.log(wholePage)
+    
     iframe.src = iframeSrcAp;
+
+    video.style.display = 'block';
+    wholePage.style.overflowY = 'hidden';
+
 }
 
 
@@ -76,6 +80,11 @@ function setUrlParameter(url, name, val) {
 
     return url+'&' + name + '=' + val;
 };
+
+
+function checkTouchDevice() {
+   return 'ontouchstart' in document.documentElement;
+}
 
 </script>
 
