@@ -1075,10 +1075,10 @@ h1.white, .white {
 
 
 .menu-item:nth-child(1) {
-    background-color: white;
+    margin-right: auto;
 }
 
-.menu-item:nth-child(n+2) {
+.menu-item:nth-child(n) {
     background-color: black;
 }
 
@@ -1234,9 +1234,6 @@ h1.white, .white {
         flex-direction: column;
     }
 
-/*    #about-text {
-        display: none;
-    }*/
 
     .about-right,
     .about-left {
@@ -2559,25 +2556,48 @@ body.player-body {
 /*keep*/
 .menu {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    /*flex-direction: row;*/
+    background-color: black;
+    /*align-items: center;
+    justify-content: center;*/
     border-bottom: 2px solid white;
 }
 
 .menu-item {
-    width: calc(100vw/7);
-    height: 10vh;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px 0 20px;
+    height: 9vh;
+    cursor: pointer;
     text-align: center;
+}
+
+h4.menu-text {
+	font-size: 1.1rem;
+	color: white;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	margin: 0;
+	padding: 0;
 }
 
 .menu-item a, a.index  {
     margin: 0px; 
     display: block; 
     width: 100%; 
-    height: 100%;
+    
 }
+
+.menu-item:nth-child(1) a{
+	height: 100%;
+}
+
+/*.menu-item:nth-child(1) {
+	padding-left: 40px;
+}*/
 
 .menu-item img {
     height: 100%;
@@ -2652,7 +2672,7 @@ body.player-body {
 .about-me {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 91vh;
   justify-content: center;
 }
 
