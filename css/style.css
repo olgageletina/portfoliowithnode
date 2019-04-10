@@ -1074,9 +1074,9 @@ h1.white, .white {
 }
 
 
-.menu-item:nth-child(1) {
+/*.menu-item:nth-child(1) {
     margin-right: auto;
-}
+}*/
 
 .menu-item:nth-child(n) {
     background-color: black;
@@ -1209,9 +1209,10 @@ h1.white, .white {
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
 
     .about-me {
+    	min-height: 91vh;
         height: 100% !important;
     }
 
@@ -2554,46 +2555,126 @@ body.player-body {
 
 
 /*keep*/
-.menu {
-    display: flex;
-    /*flex-direction: row;*/
-    background-color: black;
-    /*align-items: center;
-    justify-content: center;*/
-    border-bottom: 2px solid white;
+.menu-container {
+	position: relative;
+	display: block;
+	background: black;
+	height: 9vh;
+	border-bottom: 2px solid white;
 }
 
-.menu-item {
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px 0 20px;
-    height: 9vh;
-    cursor: pointer;
-    text-align: center;
+#back, #hamburger {
+	padding: 0 20px 0 20px;
+	height: 100%;
+}
+
+#back {
+	float: left;
+}
+
+#hamburger {
+	float: right;
+}
+
+#back img, #hamburger img {
+	height: 100%;
+	display: block; 
+}
+
+
+.menu-item a {
+        display: block;
+        padding: 20px 36px 20px 20px;
+		text-align: right;
+		perspective: 100vw;
+    }
+
+.menu { 
+	border-bottom: 2px solid white;
+
 }
 
 h4.menu-text {
-	font-size: 1.1rem;
+	font-size: 1.8rem;
 	color: white;
 	text-transform: uppercase;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
 	margin: 0;
 	padding: 0;
+	vertical-align: middle;
+	letter-spacing: 0.05rem;
 }
 
-.menu-item a, a.index  {
+.menu {
+	display: none;
+}
+
+.menu.show {
+    display: block;
+}
+
+@media screen and (min-width: 850px) {
+    .menu {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 9vh;
+    }
+
+    .menu-item {
+        display: inline-block;
+        margin: 0;
+        float: left;
+        height: 100%;
+    }
+
+    .menu-item a {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        padding: 0 20px 0 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    h4.menu-text {
+    	font-size: 1.0rem;
+    	line-height: 9vh;
+    	vertical-align: middle;
+    }
+}
+
+
+a.index  {
     margin: 0px; 
     display: block; 
     width: 100%; 
     
 }
 
-.menu-item:nth-child(1) a{
-	height: 100%;
+.menu-text-span {
+	display: block;
+	font-size: 4rem;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: white;
+	transform-origin: right center;
+	transform: rotateY(-45deg) translateZ(0);
+	transition: transform .5s;
+	/*transition-delay: .1s;*/
 }
+
+.menu-text-span:hover {
+	transform: rotateY(0deg) translateZ(0);
+	transition: transform .5s;
+}
+
+/*.menu-item:nth-child(1) a{
+	height: 100%;
+}*/
 
 /*.menu-item:nth-child(1) {
 	padding-left: 40px;

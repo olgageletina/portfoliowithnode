@@ -1,13 +1,15 @@
-
 <div class="menu-container">
-<ul class="menu">
-    <li class="menu-item" id="back-menu-item">
-        <a href="../">
-            <img src="https://s3.amazonaws.com/geletina-images/back.svg" />
-        </a>
-    </li>
+    <a href="../" id="back">
+        <img src="https://s3.amazonaws.com/geletina-images/back.svg" />
+    </a>
+    <div id="hamburger" onclick="toggleMenu()">
+        <img src="https://s3.amazonaws.com/geletina-images/menu.svg" />
+    </div>
+</div>
+<ul class="menu" id="menu-options">
     <li class="menu-item" id="web-mobile-menu-item">
         <a href="/web-mobile">
+            <span></span>
             <h4 class="menu-text">Web Mobile</h4>
         </a>
     </li>
@@ -37,7 +39,6 @@
         </a>
     </li>
 </ul>
-</div>
 <script>
 var activeCat = "<%= catID %>" + '-menu-item';
 var activeMenuElem = document.getElementById(activeCat);
@@ -60,4 +61,18 @@ switch (true) {
         break;
 }
 
+function toggleMenu () {
+    var menuUl = document.getElementById('menu-options');
+    var classList = menuUl.className.split(' ');
+
+    if (classList.indexOf('show') === -1) {
+        var showClass = menuUl.className.toString() + ' show';
+        menuUl.className = showClass;
+    } else {
+        var hideClass = classList.filter(cl => cl !== 'show');
+        console.log(hideClass);
+        menuUl.className = hideClass.toString();
+    }
+
+}
 </script>
