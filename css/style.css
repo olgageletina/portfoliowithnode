@@ -483,7 +483,7 @@ a:focus {
     /*border-bottom: 10pt solid black;*/
 }
 
-.center {
+.center, .center-full {
     text-align: center;
 }
 
@@ -2640,7 +2640,7 @@ a.index  {
 }
 
 .img-content-container {
-	width: 66vw;
+	width: 66.6666vw;
 }
 
 .img-content-container img {
@@ -2650,7 +2650,7 @@ a.index  {
 
 .text-content-container-partial	{
 	padding: 50px;
-	width: 34vw;
+	width: 33.3333vw;
 }
 
 .project-assets:before,
@@ -2693,6 +2693,10 @@ button {
 
 	#back, #hamburger {
 		padding: 0; 
+	}
+
+	br {
+    line-height: 1.75rem;
 	}
 
     .about-me {
@@ -2827,9 +2831,28 @@ button {
     }
 }
 
+@media screen and (orientation: portrait), (max-width: 823px) and (orientation: landscape) {
+	.center, .center-full {
+		padding: 50px 25px 50px 25px !important;
+	}
+
+	h5 {
+        font-size: 1.8rem;
+    }
+
+    br {
+    	line-height: 1.25rem;
+    }
+
+}
+
 @media screen and (max-width: 415px) {
     h5 {
         font-size: 1.3rem;
+    }
+
+    .center-full {
+    	text-align: left;
     }
 
 }
