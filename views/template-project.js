@@ -54,6 +54,13 @@ function makeListContent(stuff) {
                     pTextStyle: pInfo.textstyle
                 })
             ); //push promise to promise array
+        } else if (pInfo.csection === "mix" && pInfo.type === "main") {
+            contentPromises.push(
+                renderTemplate("projectMix", {
+                    pText: pInfo.divtext,
+                    imageURL: pInfo.img
+                })
+            ); //push promise to promise array
         } 
         else if (pInfo.csection === "image" && pInfo.type !== "header") {
             contentPromises.push(
