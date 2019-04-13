@@ -50,7 +50,8 @@ function makeListContent(stuff) {
         } else if (pInfo.csection === "text" && pInfo.type === "main") {
             contentPromises.push(
                 renderTemplate("projectText", {
-                    pText: pInfo.divtext
+                    pText: pInfo.divtext,
+                    pTextStyle: pInfo.textstyle
                 })
             ); //push promise to promise array
         } 

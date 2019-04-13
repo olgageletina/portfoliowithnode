@@ -713,6 +713,13 @@ h3 {
     text-transform: uppercase;
 }
 
+h5 {
+	font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
 .about-text h1 {
     color: white;
 }
@@ -2784,5 +2791,13 @@ button {
         width: 80%;
     }
 }
+
+@media screen and (max-width: 415px) {
+    h5 {
+        font-size: 1.5rem;
+    }
+
+}
+
 
 /*keep*/
