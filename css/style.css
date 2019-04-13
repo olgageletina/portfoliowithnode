@@ -2837,11 +2837,15 @@ button {
 	}
 
 	h5 {
-        font-size: 1.8rem;
+        font-size: 1.1rem;
     }
 
     br {
     	line-height: 1.25rem;
+    }
+    p {
+    	font-size: 1.1rem;
+    	line-height: 1.8rem;
     }
 
 }
