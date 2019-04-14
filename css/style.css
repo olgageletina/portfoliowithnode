@@ -2603,6 +2603,16 @@ a.index  {
   padding-right: 15vw;
 }
 
+.left {
+	padding-left: 0;
+	padding-right: 50vw;
+}
+
+.center {
+	padding-left: 25vw;
+	padding-right: 25vw;
+}
+
 
 .project-assets {
     width: 100vw;
