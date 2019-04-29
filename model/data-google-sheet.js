@@ -73,7 +73,7 @@ const getContent = function(url, q) {
                         reject(new Error('Error parsing JSON!'));
                     }
                 } else {
-                    answer = { 'Status': res.statusCode };
+                    answer = { 'Status': response.statusCode };
                 }
                 resolve(answer);
             })
@@ -81,6 +81,7 @@ const getContent = function(url, q) {
         // handle connection errors of the request
         request.on('error', (err) => reject(err))
     }).catch(error => {
+    	console.log(url);
         console.log(error);
         throw error;
     })
