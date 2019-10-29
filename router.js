@@ -49,7 +49,7 @@ exports.get = function(request, response) {
 };
 
 function testPath(url, request, response) {
-    var projectList = ["lula", "the-big-picture", "loom", "pans-labyrinth", "art-data", "stairs", "ferro-tiles", "triptychs", "such-fruit", "amplify", "co-green"];
+    var projectList = ["lula", "the-big-picture", "loom", "pans-labyrinth", "art-data", "stairs", "ferro-tiles", "triptychs", "such-fruit", "amplify", "co-green", "rabble"];
 
     //current cateories
     var categoryList = [
