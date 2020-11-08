@@ -40,7 +40,7 @@ function makeNeatJSON(data, qry) {
     return cleanJSON;
 };
 
-//refectoring as a promise
+//refactoring as a promise
 
 const getContent = function(url, q) {
     // return new pending promise
