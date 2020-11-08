@@ -13,6 +13,7 @@ exports.get = function(request, response, renderView) {
                 "Content-Type": "text/html"
             });
             var dataString = JSON.stringify(data);
+            // console.log(dataString); -- delete remove later
 
             //second promise to generate the template
             return renderView.build(dataString).then(res => {

@@ -4,6 +4,8 @@
 *::before,
 *::after {
   box-sizing: inherit;
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
 }
 
 * {
@@ -13,10 +15,12 @@
 
 html {
   box-sizing: border-box;
-  text-size-adjust: none;
-  -webkit-text-size-adjust: none;
   color: var(--dark);
   display: block;
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -167,9 +171,11 @@ p {
 
 p {
   font-family: "Montserrat", sans-serif;
-  font-weight: 400 !important;
+  font-weight: 300;
+  font-style: normal;
   --pixels: 15;
   font-size: var(--font-size);
+  
 }
 
 .large-br {
@@ -438,6 +444,10 @@ ul.contacts {
   h3 {
     --pixels: 30;
     font-size: var(--font-size);
+  }
+
+  .project-desc h3 {
+    line-height: normal;
   }
 
   p {

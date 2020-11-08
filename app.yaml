@@ -6,7 +6,17 @@ handlers:
   redirect_http_response_code: 301
   script: auto
 
- 
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+
+- url: /static
+  static_dir: static
+
+- url: /images/.*\.svg
+  static_dir: static/images
+  http_headers:
+  content_type: image/svg+xml
+
+- url: /images
+  static_dir: static/images

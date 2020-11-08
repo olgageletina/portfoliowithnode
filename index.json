@@ -1,0 +1,46 @@
+{
+    "rows": [
+        {
+            "pname": "ampl!fy",
+            "purl": "amplify",
+            "pdescription": "a public art initiative on social justice",
+            "pimgurl": "https://geletina-images.s3.amazonaws.com/portfolio20/20-amplify-title%402x.png"
+        },
+        {
+            "pname": "lula",
+            "purl": "lula",
+            "pdescription": "a robot made of paper and tape",
+            "pimgurl": "https://geletina-images.s3.amazonaws.com/portfolio20/20-lula-title%402x.png"
+        },
+        {
+            "pname": "loom",
+            "purl": "loom",
+            "pdescription": "lorem ipsum project description in ten’ish words or less",
+            "pimgurl": "https://geletina-images.s3.amazonaws.com/portfolio20/20-loom-title%402x.png"
+        },
+        {
+            "pname": "putty",
+            "purl": "putty",
+            "pdescription": "on-demand insurance by The Hartford",
+            "pimgurl": "https://geletina-images.s3.amazonaws.com/portfolio20/20-putty-title%402x.png"
+        },
+        {
+            "pname": "ferro tiles",
+            "purl": "ferro-tiles",
+            "pdescription": "lorem ipsum project description in ten’ish words or less",
+            "pimgurl": "https://geletina-images.s3.amazonaws.com/portfolio20/20-ferro-title%402x.png"
+        },
+        {
+            "pname": "experimental javascript",
+            "purl": "experimental-javascript",
+            "pdescription": "lorem ipsum project description in ten’ish words or less",
+            "pimgurl": "https://geletina-images.s3.amazonaws.com/portfolio20/20-js-title%402x.png"
+        },
+        {
+            "pname": "photo and video",
+            "purl": "photo-video",
+            "pdescription": "lorem ipsum project description in ten’ish words or less",
+            "pimgurl": "https://geletina-images.s3.amazonaws.com/portfolio20/20-photo-title%402x.png"
+        }
+    ]
+}
