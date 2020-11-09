@@ -5,8 +5,6 @@ let windowHeight = window.innerHeight;
 let projectsHeight, navHeight, totalOffset;
 let paddingHeight;
 
-// console.log(window.location.href);
-
 window.addEventListener("load", function () {
   projectsHeight = projects.clientHeight;
   navHeight = nav.clientHeight;

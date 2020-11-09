@@ -1,91 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" id='project-page-html'>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <%= headerHTML %>
 </head>
 
 <body>
-    <%= menu %>
-    <%= projectHeader %>
-    <div class="about-project">
-        <div class="about-details">
-            <h1 id="name">
-                <%= ptitle %>
-            </h1>
-            <p id="year">
-                <%= year %>
-            </p><br>
+    <div class="nav-top gradient-bottom-top" id="top-nav">
+        <a href="../" class="OG">
+            <div class="OG">
+                <img src="/static/images/left-arrow-dark.svg" alt="left arrow icon" />
+                <h3>Olga Geletina</h3>
+            </div>
+        </a>
+        <div class="menu-link">
+            <div class="btn">About</div>
         </div>
-        <div class="about-description">
-            <p class="about-text">
-                <%= aboutHTML %>
-            </p>
+        <div class="menu-link">
+            <div class="btn">Contact</div>
         </div>
     </div>
-    <%= mainHTML %>
+    <div class="project-page">
+        <%= projectAboutHTML %>
+        <%= projectContentHTML %>
+    </div>
 </body>
-<script>
-function closePlayer(closedID) {
-    var videoElemID = closedID.substring(0, closedID.lastIndexOf('-')) + '-player';
-    var video = document.getElementById(videoElemID.toString());
-    var iframe = video.querySelector('iframe');
-    var iframeSrc = setUrlParameter(iframe.src, 'autoplay', 0);
-    var wholePage = document.getElementById('project-page-html');
-    iframe.src = iframeSrc;
-    
-    stopVideo(video);
-    wholePage.style.overflowY = 'scroll';
-    video.style.display = 'none';
-}
-
-function stopVideo(element) {
-    var iframe = element.querySelector('iframe');
-    var video = element.querySelector('video');
-    if (iframe !== null) {
-        var iframeSrc = iframe.src;
-        iframe.src = iframeSrc;
-    }
-    if (video !== null) {
-        video.pause();
-    };
-}
-
-function openPlayer(clickedID) {
-    var videoElemID = clickedID.substring(0, clickedID.lastIndexOf('-')) + '-player';
-    var video = document.getElementById(videoElemID);
-    var iframe = video.querySelector('iframe');
-    var iframeSrcAp = setUrlParameter(iframe.src, 'autoplay', 1);
-    var wholePage = document.getElementById('project-page-html');
-
-    console.log(wholePage)
-    
-    iframe.src = iframeSrcAp;
-
-    video.style.display = 'block';
-    wholePage.style.overflowY = 'hidden';
-
-}
-
-
-
-function setUrlParameter(url, name, val) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(url);
-    if (results !== null) {
-        return url.substring(0,results.index) + '&' + name + '=' + val;
-    } 
-
-    return url+'&' + name + '=' + val;
-};
-
-
-function checkTouchDevice() {
-   return 'ontouchstart' in document.documentElement;
-}
-
-</script>
-
+<%= projectFooterHTML %>
+<script defer src="/static/js/project.js"></script>
 </html>

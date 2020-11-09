@@ -23,6 +23,7 @@ exports.get = function(request, response, renderView) {
             });
         })
         .catch(err => {
+            console.log(`ERROR : generic controller :: ${err}`);
             response.writeHead(404, {
                 "Content-Type": "text/html"
             });

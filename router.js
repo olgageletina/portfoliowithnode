@@ -5,14 +5,14 @@ var homeController = require("./controllers/index");
 var errorController = require("./controllers/404");
 
 
-exports.get = function(request, response) {
+exports.get = function (request, response) {
     request.requrl = url.parse(request.url, true);
     var path = request.requrl.pathname;
     var extname = String(
         path
-        .split(".")
-        .pop()
-        .toLowerCase()
+            .split(".")
+            .pop()
+            .toLowerCase()
     );
 
     var mimeTypes = {
@@ -36,7 +36,7 @@ exports.get = function(request, response) {
         response.writeHead(200, {
             "Content-Type": mimeTypes[extname]
         });
-        fs.readFile(__dirname + path, "utf8", function(err, data) {
+        fs.readFile(__dirname + path, "utf8", function (err, data) {
             if (err) throw err;
             response.write(data, "utf8");
             response.end();
@@ -50,8 +50,6 @@ function testPath(url, request, response) {
     var projectList = ["amplify", "lula", "loom", "putty", "ferro-tiles", "experimental-javascript", "photo-video"];
 
     var projectId = url.split("/")[1];
-
-    console.log("project: " + projectId);
 
     switch (true) {
         case projectList.indexOf(projectId) != -1:

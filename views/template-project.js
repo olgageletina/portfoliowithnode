@@ -1,10 +1,10 @@
-var { constructHeader, constructMenu, constructBody, renderTemplate } = require('./helper/HTML-constructor-helpers');
+const { constructHeader, constructBody, renderTemplate } = require('./helper/HTML-constructor-helpers');
 
-exports.build = function(features) {
-    var dataJSON = JSON.parse(features);
+exports.build = function (features) {
+    let dataJSON = JSON.parse(features);
+
     return makeListContent(dataJSON)
         .then(dataJSON => constructHeader('project', dataJSON))
-        .then(dataJSON => constructMenu('project', dataJSON))
         .then(dataJSON => constructBody('project', dataJSON))
         .catch(error => {
             console.log(`ERROR : template-project :: main build function ${error}`);
@@ -13,84 +13,49 @@ exports.build = function(features) {
 };
 
 function makeListContent(stuff) {
-    var projectJSON = {};
-    var contentPromises = []; //create a promise array
-    var headerPromise;
+    let projectJSON = {};
+    let contentPromises = []; //create a promise array
+    let titlePromise;
+    let nextProjectPromise;
+
 
     //process data
-    for (var i = 0; i < stuff.rows.length; i++) {
-        var pInfo = stuff.rows[i];
-        projectJSON.ptitle = pInfo.pname;
-        projectJSON.catID = pInfo.icategory;
-        projectJSON.pSlug = pInfo.pslug;
+    for (let i = 0; i < stuff.rows.length; i++) {
+        const pInfo = stuff.rows[i];
 
-        if (pInfo.csection === "about") {
-            projectJSON.year = pInfo.year;
-            projectJSON.aboutHTML = pInfo.atext;
-        } else if (pInfo.csection === "iframe") {
-            if (pInfo.type === "header") {
-                headerPromise = renderTemplate("projectHeaderIframe", {
-                    imgURL: pInfo.img,
-                    pslug: pInfo.iframeid,
-                    fimageURL: pInfo.fimg
-                })
-            } else {
-                contentPromises.push(
-                    renderTemplate("projectHeaderIframe", {
-                        imgURL: pInfo.img,
-                        pslug: pInfo.iframeid,
-                        fimageURL: pInfo.fimg
-                    })
-                ); //push promise to promise array
-
-            }
-        } else if (pInfo.type === "header" && pInfo.csection !== "iframe") {
-            headerPromise = renderTemplate("projectHeaderImg", {fimageURL: pInfo.fimg})
-
-        } else if (pInfo.csection === "text" && pInfo.type === "main") {
+        if (pInfo.section === "about-project") {
+            titlePromise = renderTemplate("projectAbout", {
+                pImg: pInfo.img,
+                pslug: pInfo.pslug,
+                text: pInfo.text,
+                description: pInfo.description,
+                pName: pInfo.pname
+            });
+        } else if (pInfo.section === "content") {
             contentPromises.push(
-                renderTemplate("projectText", {
-                    pText: pInfo.divtext,
-                    pTextStyle: pInfo.textstyle
+                renderTemplate("projectContent", {
+                    divtext: pInfo.divtext
                 })
             ); //push promise to promise array
-        } else if (pInfo.csection === "mix" && pInfo.type === "main") {
-            contentPromises.push(
-                renderTemplate("projectMix", {
-                    pText: pInfo.divtext,
-                    imageURL: pInfo.img
-                })
-            ); //push promise to promise array
-        } 
-        else if (pInfo.csection === "image" && pInfo.type !== "header") {
-            contentPromises.push(
-            (j => {
-                var pImg = pInfo.img.toString().split(",");
-                return renderTemplate("projectImgSection", { items: pImg })
-                    .then(result => {
-                        return renderTemplate("projectImgParent", {
-                            imgHTML: result
-                        });
-                    })
-                    .catch(error => {
-                        console.log(
-                            `ERROR : template-home :: makeListContent error handling project images`
-                        );
-                        throw error;
-                    });
-            })(i)
-        );
+        } else if (pInfo.section === "next-project") {
+            nextProjectPromise = renderTemplate("projectFooter", {
+                nextImg: pInfo.img,
+                nextSlug: pInfo.nextslug,
+                nextDescription: pInfo.description,
+                nextName: pInfo.nextname
+            });
         }
     }
 
-    var contentPromises = Promise.all(contentPromises);
+    let allcontentPromises = Promise.all(contentPromises); //daisy chaining promises – using promise all on the array of content promises
 
-    return Promise.all([contentPromises, headerPromise])
+    return Promise.all([titlePromise, allcontentPromises, nextProjectPromise])
         .then(result => {
-            var [contentPromisesArr, headerPromise] = result;
-            
-            projectJSON.mainHTML = contentPromisesArr.join("");
-            projectJSON.projectHeader = headerPromise;
+            let [title, content, footer] = result;
+
+            projectJSON.projectAboutHTML = title;
+            projectJSON.projectContentHTML = content.join("");
+            projectJSON.projectFooterHTML = footer;
             return projectJSON;
         })
         .catch(error => {

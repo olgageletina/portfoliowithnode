@@ -26,7 +26,7 @@ function makeListContent(stuff) {
 
     return Promise.all(projectPromises)
         .then(result => {
-            indexJSON.projectHTML = result;
+            indexJSON.projectHTML = result.join("");
             return indexJSON;
         })
         .catch(error => {

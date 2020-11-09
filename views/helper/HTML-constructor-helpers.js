@@ -18,23 +18,6 @@ function constructHeader(templateName, dataJSON) {
 
 module.exports.constructHeader = constructHeader;
 
-function constructMenu(templateName, dataJSON) {
-    // console.log(dataJSON);
-    return renderTemplate('menu', dataJSON)
-        .then(result => {
-            // console.log(dataJSON);
-            return Object.assign({}, dataJSON, { menu: result })
-        }).catch(error => {
-            console.log(
-                `ERROR : template-${templateName} :: constructHeader error rendering headHTML`
-            );
-            throw error;
-        });
-}
-
-module.exports.constructMenu = constructMenu;
-
-
 function constructBody(templateName, dataJSON) {
     // console.log(dataJSON);
     return renderTemplate(templateName, dataJSON)
