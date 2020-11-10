@@ -4,8 +4,6 @@
 *::before,
 *::after {
   box-sizing: inherit;
-  -moz-osx-font-smoothing: auto;
-  -webkit-font-smoothing: auto;
 }
 
 * {
@@ -19,8 +17,6 @@ html {
   display: block;
   text-size-adjust: none;
   -webkit-text-size-adjust: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
