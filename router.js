@@ -1,21 +1,21 @@
-var url = require("url");
-var fs = require("fs");
-var projectController = require("./controllers/projectpage");
-var homeController = require("./controllers/index");
-var errorController = require("./controllers/404");
+const url = require("url");
+const fs = require("fs");
+const projectController = require("./controllers/projectpage");
+const homeController = require("./controllers/index");
+const errorController = require("./controllers/404");
 
 
 exports.get = function (request, response) {
     request.requrl = url.parse(request.url, true);
-    var path = request.requrl.pathname;
-    var extname = String(
+    const path = request.requrl.pathname;
+    const extname = String(
         path
             .split(".")
             .pop()
             .toLowerCase()
     );
 
-    var mimeTypes = {
+    const mimeTypes = {
         // "html": "text/html",
         js: "text/javascript",
         css: "text/css",
@@ -47,13 +47,13 @@ exports.get = function (request, response) {
 };
 
 function testPath(url, request, response) {
-    var projectList = ["amplify", "lula", "loom", "putty", "ferro-tiles", "experimental-javascript", "photo-video"];
+    const projectList = ["amplify", "lula", "loom", "putty", "ferro-tiles", "experimental-javascript", "photo-video"];
 
-    var projectId = url.split("/")[1];
+    const projectId = url.split("/")[1];
 
     switch (true) {
         case projectList.indexOf(projectId) != -1:
-            request.q = projectId;
+            request.q = {name: 'pslug', value: projectId};
             request.sheet = 2;
             // console.log("this is a project page");
             projectController.get(request, response);

@@ -8,31 +8,30 @@ const speadSheetID = "1s3noi79O9Z9k19jLVm0x34zkIi5wSVzHqLNUptRFuMM";
 var https = require('https');
 
 function makeNeatJSON(data, qry) {
-    var mess = data.feed.entry;
-    var cleanJSON = {};
-    var rows = [];
-    var query = qry;
+    const mess = data.feed.entry;
+    const query = qry;
+
+    let cleanJSON = {};
+    let rows = [];
+
 
     for (var i = 0; i < mess.length; ++i) {
-        var keys = Object.keys(mess[i]);
-        var newRow = {};
-        var entry = mess[i];
-        var queried = false;
+        let newRow = {};
+        const entry = mess[i];
+        const keys = Object.keys(entry);
+        let retriveRow = query === '' ? true : mess[i][`gsx$${query.name}`].$t === query.value; // if query empty get the row's contents else determine whether the row is queried
 
-        for (var j = 0; j < keys.length; ++j) {
-            var gsxCheck = keys[j].indexOf('gsx$');
-            if (gsxCheck > -1) {
-                var key = keys[j];
-                var name = key.substring(4);
-                var content = entry[key];
-                var value = content.$t;
-                if (value.indexOf(query.toLowerCase()) > -1) { //previously value was lower cased as well
-                    queried = true;
+        if (retriveRow) {
+            for (var j = 0; j < keys.length; ++j) {
+                var gsxCheck = keys[j].indexOf('gsx$');
+                if (gsxCheck > -1) {
+                    var key = keys[j];
+                    var name = key.substring(4);
+                    var content = entry[key];
+                    var value = content.$t;
+                    newRow[name] = value;
                 }
-                newRow[name] = value;
             }
-        }
-        if (queried === true) {
             rows.push(newRow);
         }
     }
@@ -40,16 +39,14 @@ function makeNeatJSON(data, qry) {
     return cleanJSON;
 };
 
-//refactoring as a promise
-
-const getContent = function(url, q) {
+const getContent = function (url, q) {
     // return new pending promise
-    var query = q || '';
+    const query = q || '';
 
     return new Promise((resolve, reject) => {
         const request = https.get(url, (response) => {
-            var thing = '';
-            var answer = {};
+            let thing = '';
+            let answer = {};
 
             // handle http errors
             if (response.statusCode < 200 || response.statusCode > 299) {
@@ -81,16 +78,16 @@ const getContent = function(url, q) {
         // handle connection errors of the request
         request.on('error', (err) => reject(err))
     }).catch(error => {
-    	console.log(url);
+        console.log(url);
         console.log(error);
         throw error;
     })
 };
 
-exports.getQuery = function(query, page) {
+exports.getQuery = function (query, page) {
     // default to the second page
-    var pg = page || 2;
-    var requestURL = `https://spreadsheets.google.com/feeds/list/${speadSheetID}/${pg}/public/values?alt=json`;
+    const pg = page || 2;
+    const requestURL = `https://spreadsheets.google.com/feeds/list/${speadSheetID}/${pg}/public/values?alt=json`;
     return getContent(requestURL, query);
 }
 
