@@ -25,10 +25,10 @@ function makeNeatJSON(data, qry) {
             for (var j = 0; j < keys.length; ++j) {
                 var gsxCheck = keys[j].indexOf('gsx$');
                 if (gsxCheck > -1) {
-                    var key = keys[j];
-                    var name = key.substring(4);
-                    var content = entry[key];
-                    var value = content.$t;
+                    const key = keys[j];
+                    const name = key.substring(4);
+                    const content = entry[key];
+                    const value = content.$t;
                     newRow[name] = value;
                 }
             }
