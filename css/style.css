@@ -2581,7 +2581,7 @@ a.index  {
 .about-description {
     width: 60vw;
     padding-left: 10px;
-    padding-right: 15vw;
+    /* padding-right: 15vw; */
 }
 
 .about-details {
