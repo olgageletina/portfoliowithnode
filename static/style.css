@@ -547,7 +547,7 @@ img.title-img {
 .amplify-bg img {
   max-width: 85%;
   margin: auto;
-  transform: translateY(10%);
+  transform: translateY(15%);
 }
 
 .project-page .section .col-2 .col-monolith:nth-child(odd) {
