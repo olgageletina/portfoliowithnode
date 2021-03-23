@@ -595,6 +595,11 @@ img.title-img {
   .menu-home {
     padding-bottom: 0.9rem;
   }
+
+  .row {
+    align-items: baseline;
+  }
+  
   .row,
   .column-reverse {
     flex-direction: row;
