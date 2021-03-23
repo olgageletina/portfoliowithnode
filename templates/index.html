@@ -1,90 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-	
+
 <head>
-	<%= headerHTML %>
+  <%= headerHTML %>
 </head>
 
 <body>
-  <div class="landing-page" id="landing-body">
-	<%= projectHTML %>
-  </div>
+  <div class="content-full">
+    <%= menu %>
 
-  <div class="nav-bottom sticky gradient-top-bottom" id="bottom-nav">
-    <div class="OG">
-      <h3>Olga Geletina</h3>
-    </div>
-    <div class="menu-link">
-      <div class="btn">About</div>
-    </div>
-    <div class="menu-link">
-      <div class="btn">Contact</div>
-    </div>
-  </div>
-</body>
-<footer>
-  <div class="col-1">
-    <div class="about-og">
-      <p>
-        I'm a designer exploring human relationships with technology. A recent
-        alumna of the Harvard Graduate School of Design, you can find me
-        west-siding on the east coast. Outside of design, I like surfing,
-        sailing, and art. <span class="large-br"><br /></span> Lorem ipsum
-        dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
-    </div>
-
-    <div class="publications">
-      <h2>Publications</h2>
-
-      <div class="pub">
-        <h3 class="pub-title">Energy & Buildings</h3>
-        <p>
-          Tunable infrared transmission for energy-efficient pneumatic
-          building façades
-        </p>
-        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0378778819331469" class="btn btn-arrow"
-          target="_blank">Read paper
-          <img src="/static/images/right-arrow-dark.svg" alt="right arrow icon" /></a>
+      <div id="work" class="landing-page col-2">
+        <%= projectHTML %>
       </div>
+      <div class="col-2 about-og">
+        <div class="wrap-around">
+          <div class="col-half og-bio">
+            <h2 id="about">About</h2>
+            <p class="about-text">
+              I'm a designer and educator exploring human relationships with technology. Currently at The Hartford
+              Innovation Lab, my responsibilities entail end-to-end product creation — from lo-fidelity sketching to
+              creating the final layouts and gathering data on customer interactions. My background in design, data,
+              and
+              entrepreneurship enables a quantitative approach to design across various modes of technology.
+              <span class="large-br"><br /></span>
+              An alumna of Harvard Graduate School of Design and Baruch College, I enjoy teaching in my spare time. My
+              specialties are courses in design, creative coding, and hobbyist electronics. By creating immersive
+              online
+              and
+              in-person content, I aim to give students the ability to embrace technical problems on their own.
+              <span class="large-br"><br /></span>
+              PS I made this site from scratch, learn how I did it <a class="link-type-inline"
+                href="https://github.com/olgageletina/portfoliowithnode">here</a>.
+            </p>
+          </div>
+          <div class="col-half publications">
+            <h2>Publications</h2>
+            <div class="pub">
+              <h3 class="pub-title">Energy & Buildings</h3>
+            </div>
+            <p>
+              Tunable infrared transmission for energy-efficient pneumatic
+              building façades
+            </p>
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0378778819331469" class="btn btn-arrow"
+              target="_blank">Read paper
+              <img src="/static/images/right-arrow-dark.svg" alt="right arrow icon" /></a>
 
-      <div class="pub">
-        <h3 class="pub-title">ACADIA</h3>
-        <p>
-          Fluid Equilibrium: Material Computation in Ferrofluidic Castings
-        </p>
-        <a href="https://www.researchgate.net/publication/328462122_Fluid_Equilibrium_Material_Computation_in_Ferrofluidic_Castings"
-          class="btn btn-arrow" target="_blank">Read paper
-          <img src="/static/images/right-arrow-dark.svg" alt="right arrow icon" /></a>
+            <div class="pub">
+              <h3 class="pub-title">ACADIA</h3>
+              <p>
+                Fluid Equilibrium: Material Computation in Ferrofluidic Castings
+              </p>
+              <a href="https://www.researchgate.net/publication/328462122_Fluid_Equilibrium_Material_Computation_in_Ferrofluidic_Castings"
+                class="btn btn-arrow" target="_blank">Read paper
+                <img src="/static/images/right-arrow-dark.svg" alt="right arrow icon" /></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-half contact">
+          <h2 id="contact">Contact</h2>
+          <ul class="contacts">
+            <li>
+              <p>
+                <a href="mailto:olgageletina@gmail.com" class="link-type-inline">olgageletina@gmail.com</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a href="https://www.linkedin.com/in/geletina/" class="link-type-inline">linkedin.com/in/geletina</a>
+              </p>
+            </li>
+          </ul>
+          <a href="https://geletina-images.s3.amazonaws.com/portfolio/olga-geletina-CV.pdf" class="btn btn-arrow"
+            target="_blank">View
+            resume
+            <img src="/static/images/right-arrow-dark.svg" alt="right arrow icon" /></a>
+        </div>
       </div>
-    </div>
-
-    <div class="contact">
-      <h2>Contact</h2>
-      <ul class="contacts">
-        <li>
-          <p>
-            <a href="mailto:olgageletina@gmail.com" class="a-inline">olgageletina@gmail.com</a>
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="https://www.linkedin.com/in/geletina/">linkedin.com/in/geletina</a>
-          </p>
-        </li>
-      </ul>
-      <a href="https://s3.amazonaws.com/geletina-images/Olga-Geletina-CV.pdf" class="btn btn-arrow" target="_blank">View
-        resume
-        <img src="/static/images/right-arrow-dark.svg" alt="right arrow icon" /></a>
-    </div>
   </div>
-</footer>
-<script defer src="/static/js/main.js"></script>
+
+  <script defer src="/static/js/script.js"></script>
 
 </html>

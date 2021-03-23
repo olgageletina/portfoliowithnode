@@ -6,25 +6,16 @@
 </head>
 
 <body>
-    <div class="nav-top gradient-bottom-top" id="top-nav">
-        <a href="../" class="OG">
-            <div class="OG">
-                <img src="/static/images/left-arrow-dark.svg" alt="left arrow icon" />
-                <h3>Olga Geletina</h3>
+    <div class="content-full">
+        <%= menu %>
+            <div class="project-page">
+                <%= projectAboutHTML %>
+                    <%= projectContentHTML %>
+                        <%= nextProjectHTML %>
             </div>
-        </a>
-        <div class="menu-link">
-            <div class="btn">About</div>
-        </div>
-        <div class="menu-link">
-            <div class="btn">Contact</div>
-        </div>
-    </div>
-    <div class="project-page">
-        <%= projectAboutHTML %>
-        <%= projectContentHTML %>
     </div>
 </body>
-<%= projectFooterHTML %>
-<script defer src="/static/js/project.js"></script>
+
+<script defer src="/static/js/script.js"></script>
+
 </html>
