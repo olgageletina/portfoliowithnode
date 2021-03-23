@@ -16,7 +16,7 @@ handlers:
 - url: /images/.*\.svg
   static_dir: static/images
   http_headers:
-  content_type: image/svg+xml
+    Access-Control-Allow-Origin: '*'
 
 - url: /images
   static_dir: static/images

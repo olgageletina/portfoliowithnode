@@ -388,7 +388,7 @@ a.link-type-inline:hover::after {
 }
 
 .landing-page .project {
-  border-bottom: 0.0625rem solid var(--dark);
+  border-bottom: 0.125rem solid var(--dark);
 }
 
 .landing-page .project:last-child {
