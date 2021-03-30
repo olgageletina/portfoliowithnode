@@ -5,14 +5,9 @@
   box-sizing: inherit;
 }
 
-* {
-  --font-size: calc((var(--pixels) / 16) * 1rem);
-  font-size: var(--font-size);
-}
-
 html {
   box-sizing: border-box;
-  color: var(--dark);
+  color: #2a2a2a;
   display: block;
   scroll-behavior: smooth;
 }
@@ -56,6 +51,7 @@ header {
 .col-2,
 .col-half {
   width: 100%;
+  align-items: baseline;
 }
 
 .col-monolith {
@@ -64,11 +60,18 @@ header {
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  /* align-items: baseline; */
+
+  /* rando IE fix */
+  min-height: 1px;
 }
 
 .flex-wrap,
 .wrap-around {
   display: flex;
+  /* rando IE fix */
+  width: 100%;
+  min-height: 1px;
 }
 
 .wrap-around {
@@ -83,14 +86,9 @@ header {
 .column-reverse {
   width: 100%;
   display: flex;
-}
-
-.column-reverse {
   flex-direction: column-reverse;
-}
-
-.row {
-  flex-direction: column-reverse;
+  /* rando IE fix */
+  min-height: 1px;
 }
 
 .aligned-bottom {
@@ -99,6 +97,10 @@ header {
 
 .col-1 {
   height: fit-content;
+}
+.col-something-else {
+  width: 50%;
+  min-height: 1px;
 }
 
 .row img,
@@ -164,7 +166,7 @@ header {
   width: 1.5rem;
   height: 0.125rem;
   margin-top: 0.3125rem;
-  background-color: var(--dark);
+  background-color: #2a2a2a;
   display: block;
 }
 
@@ -188,10 +190,10 @@ li.mobile-row a {
   align-items: center;
   width: 100%;
   padding: 0.9375rem 0 0.9375rem 0;
-  border-bottom: 0.125rem solid var(--dark);
+  border-bottom: 0.125rem solid #2a2a2a;
 }
 
-li.mobile-row:last-child a{
+li.mobile-row:last-child a {
   border-bottom: none;
 }
 
@@ -240,25 +242,21 @@ h2,
 }
 
 h1 {
-  --pixels: 41;
-  font-size: var(--font-size);
+  font-size: 2.5625rem;
   line-height: 1;
 }
 
 h2 {
-  --pixels: 24;
-  font-size: var(--font-size);
+  font-size: 1.5rem;
 }
 
 h3 {
-  --pixels: 20;
-  font-size: var(--font-size);
+  font-size: 1.25rem;
   font-weight: 400;
 }
 
 .btn {
-  --pixels: 13;
-  font-size: var(--font-size);
+  font-size: 0.8125rem;
   letter-spacing: 0.1rem;
 }
 
@@ -282,8 +280,7 @@ p {
 p {
   font-family: "Montserrat", sans-serif;
   font-weight: 400 !important;
-  --pixels: 15;
-  font-size: var(--font-size);
+  font-size: 0.9375rem;
   line-height: 1.35;
 }
 
@@ -338,7 +335,7 @@ a.link-type-menu::after {
   position: absolute;
   bottom: -0.125rem;
   right: 0;
-  background: var(--dark);
+  background: #2a2a2a;
   transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -355,7 +352,7 @@ a.link-type-inline::after {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: var(--dark);
+  background: #2a2a2a;
   transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -388,7 +385,7 @@ a.link-type-inline:hover::after {
 }
 
 .landing-page .project {
-  border-bottom: 0.125rem solid var(--dark);
+  border-bottom: 0.125rem solid #2a2a2a;
 }
 
 .landing-page .project:last-child {
@@ -467,6 +464,7 @@ img.title-img {
 
 .project-page .section .col-2 img {
   width: 100%;
+  min-height: 1px;
 }
 
 .next-project {
@@ -485,7 +483,7 @@ img.title-img {
   position: absolute;
   top: 0;
   right: 0;
-  background: var(--dark);
+  background: #2a2a2a;
   transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -572,13 +570,11 @@ img.title-img {
 
 @media (max-width: 374.98px) {
   h1 {
-    --pixels: 33;
-    font-size: var(--font-size);
+    font-size: 2.0625rem;
   }
 
   h3 {
-    --pixels: 17;
-    font-size: var(--font-size);
+    font-size: 1.0625rem;
   }
 }
 
@@ -599,7 +595,7 @@ img.title-img {
   .row {
     align-items: baseline;
   }
-  
+
   .row,
   .column-reverse {
     flex-direction: row;
@@ -614,7 +610,6 @@ img.title-img {
     margin-left: auto;
     padding-left: 1.1rem;
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
   }
 
@@ -750,16 +745,13 @@ img.title-img {
     margin-top: -0.5rem;
   }
   h1 {
-    --pixels: 51;
-    font-size: var(--font-size);
+    font-size: 3.1875rem;
   }
   h3 {
-    --pixels: 24;
-    font-size: var(--font-size);
+    font-size: 1.54rem;
   }
   h2 {
-    --pixels: 30;
-    font-size: var(--font-size);
+    font-size: 1.875rem;
   }
   .about-text {
     padding-top: 1.875rem;
@@ -792,16 +784,13 @@ img.title-img {
     padding: 2rem 0 0 2rem;
   }
   h1 {
-    --pixels: 63;
-    font-size: var(--font-size);
+    font-size: 3.9375rem;
   }
   h3 {
-    --pixels: 28;
-    font-size: var(--font-size);
+    font-size: 1.75rem;
   }
   h2 {
-    --pixels: 35;
-    font-size: var(--font-size);
+    font-size: 2.1875rem;
   }
   .about-text {
     padding-top: 2.1rem;
@@ -876,24 +865,19 @@ img.title-img {
     padding-left: 1.5rem;
   }
   h1 {
-    --pixels: 80;
-    font-size: var(--font-size);
+    font-size: 5rem;
   }
   h3 {
-    --pixels: 35;
-    font-size: var(--font-size);
+    font-size: 2.1875rem;
   }
   h2 {
-    --pixels: 43;
-    font-size: var(--font-size);
+    font-size: 2.6875rem;
   }
   p {
-    --pixels: 18;
-    font-size: var(--font-size);
+    font-size: 1.125rem;
   }
   .btn {
-    --pixels: 16;
-    font-size: var(--font-size);
+    font-size: 1rem;
   }
   .project-page {
     padding: 2.5rem;
