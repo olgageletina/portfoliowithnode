@@ -27,6 +27,12 @@ exports.get = function (request, response) {
   };
 
   if (mimeTypes[extname] != undefined) {
+    if(mimeTypes[extname] == "image/x-icon" && path === '/favicon.ico' && request.method === 'GET') {
+      response.setHeader('Content-Type', 'image/x-icon');
+      fs.createReadStream('./favicon.ico').pipe(response);
+      return; //favicon fix finally
+    }
+
     response.writeHead(200, {
       "Content-Type": mimeTypes[extname],
     });
