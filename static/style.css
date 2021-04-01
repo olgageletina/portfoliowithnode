@@ -125,6 +125,7 @@ header {
 
 .error-page a.btn {
   margin: auto;
+  justify-content: center;
 }
 
 .error-page .col-half {
