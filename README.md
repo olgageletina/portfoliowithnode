@@ -4,7 +4,7 @@
 This is a repository for my personal website. Built with Node.js, without the use of any additional frameworks.
 
 ## How it works:
-![portfolio architecture-final](https://s3.amazonaws.com/geletina-images/portfolio-architecture.png)
+![portfolio architecture-final](https://geletina-images.s3.amazonaws.com/portfolio/portfolio-architecture-2021.png)
 
 
 | Key        | Function           | Scripts  |
