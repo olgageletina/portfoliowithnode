@@ -34,6 +34,7 @@ function makeListContent(stuff) {
         imgDesc: pInfo.imgdesc,
         pslug: pInfo.pslug,
         text: pInfo.text,
+        pName: pInfo.pname,
       });
     } else if (pInfo.section === "content") {
       contentPromises.push(
