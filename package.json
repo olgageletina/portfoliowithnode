@@ -19,6 +19,6 @@
   "homepage": "https://github.com/olgageletina/portfoliowithnode#readme",
   "dependencies": {
     "fs": "0.0.1-security",
-    "underscore": "^1.9.1"
+    "underscore": "^1.13.1"
   }
 }
