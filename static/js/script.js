@@ -69,8 +69,9 @@ barba.init({
           });
 
           document.getElementById("work").classList.add("hide");
+          window.scrollTo({ top: 0 });
           resolve();
-        }).finally(window.scrollTo({ top: 0 }));
+        });
       },
 
       beforeEnter(data) {
@@ -81,6 +82,7 @@ barba.init({
           //get new dimensions add existing img into the src tag on the incoming page
           const newDims = ogImg.getBoundingClientRect();
           ogImg.src = clone.src;
+          ogImg.srcset = clone.src;
 
           //remove CSS class from parent to evade the loading transition
           if (
@@ -219,6 +221,7 @@ barba.init({
       },
       // afterLeave() {
       //   window.scrollTo({ top: 0 });
+      // https://stackoverflow.com/questions/52292603/is-there-a-callback-for-window-scrollto
       // },
       enter(data) {
         return new Promise(function (resolve) {
@@ -266,9 +269,13 @@ barba.init({
   requestError: (trigger, action, url, response) => {
     if (action === "click" && response.status && response.status === 404) {
       barba.go("/404");
+    } else if (response.status && response.status === 200) {
+      window.location.reload();
     }
     return false;
   },
+  logLevel: "error",
+  timeout: 5000,
   debug: true,
 });
 
