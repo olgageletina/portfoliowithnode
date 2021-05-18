@@ -3,7 +3,7 @@ const menuNav = document.getElementById("mobile-nav");
 let splits = [];
 let clone, cloneDims, imgPos, ogImg, imgPosEndY, menu;
 const imgContainer = document.createElement("div");
-const menuEase = CustomEase.create("M0,0 C0.19,1 0.22,1 1,1");
+const mainEase = CustomEase.create("M0,0 C0.19,1 0.22,1 1,1");
 const contentEase = CustomEase.create(
   "M0,0 C0.29,0 0.466,0.362 0.498,0.502 0.518,0.592 0.491,0.755 0.524,0.864 0.559,0.98 0.62,1 1,1"
 );
@@ -11,15 +11,33 @@ const dashEase = CustomEase.create("M0,0 C0.23,1 0.32,1 1,1)");
 
 let opacityEnterAnim = {
   opacity: 1,
-  ease: "power3.in",
+  ease: mainEase,
   duration: 0.1,
 };
 
 const transformAnim = {
   y: 0,
   ease: contentEase,
-  duration: 0.3,
+  duration: 0.275,
 };
+
+barba.hooks.beforeEnter(function(data) {
+  if (
+    data.next.url.hash === "about" ||
+    data.next.url.hash === "contact"
+  ) {
+    const yCoord = document
+      .getElementById(data.next.url.hash)
+      .getBoundingClientRect();
+    window.scrollTo({ top: yCoord.top });
+
+  }  else {
+    window.scrollTo({ top: 0 });
+
+  }
+  console.log('scroll scroll scroll');
+  console.log(data)
+});
 
 barba.init({
   transitions: [
@@ -69,9 +87,8 @@ barba.init({
           });
 
           document.getElementById("work").classList.add("hide");
-          window.scrollTo({ top: 0 });
           resolve();
-        });
+        })
       },
 
       beforeEnter(data) {
@@ -82,7 +99,7 @@ barba.init({
           //get new dimensions add existing img into the src tag on the incoming page
           const newDims = ogImg.getBoundingClientRect();
           ogImg.src = clone.src;
-          ogImg.srcset = clone.src;
+          ogImg.srcset = clone.srcset;
 
           //remove CSS class from parent to evade the loading transition
           if (
@@ -90,7 +107,10 @@ barba.init({
             ogImg.parentNode.classList.contains("img-lazy")
           ) {
             ogImg.parentNode.classList.remove("img-lazy");
+          } if (ogImg.classList && ogImg.classList.contains("lazyload")) {
+            ogImg.classList.remove("lazyload");
           }
+
 
           const tl = gsap.timeline({
             onComplete() {
@@ -160,7 +180,7 @@ barba.init({
               {
                 y: 0,
                 duration: 0.5,
-                ease: menuEase,
+                ease: mainEase,
                 stagger: 0.01,
               },
               0.1
@@ -168,8 +188,8 @@ barba.init({
             .to(data.next.container, opacityEnterAnim, 0.65)
             .to(
               data.next.container,
-              { y: 0, ease: contentEase, duration: 0.375 },
-              0.675
+              transformAnim,
+              0.7
             );
         });
       },
@@ -198,7 +218,7 @@ barba.init({
             tl.to(data.current.container, {
               opacity: 0,
               y: 30,
-              ease: contentEase,
+              ease: mainEase,
               duration: 0.2,
               delay: 0.55,
             }).set(menu, { y: "200%" });
@@ -219,24 +239,8 @@ barba.init({
           }
         });
       },
-      // afterLeave() {
-      //   window.scrollTo({ top: 0 });
-      // https://stackoverflow.com/questions/52292603/is-there-a-callback-for-window-scrollto
-      // },
       enter(data) {
         return new Promise(function (resolve) {
-          if (
-            data.next.url.hash === "about" ||
-            data.next.url.hash === "contact"
-          ) {
-            const yCoord = document
-              .getElementById(data.next.url.hash)
-              .getBoundingClientRect();
-            window.scrollTo({ top: yCoord.top });
-          } else {
-            window.scrollTo({ top: 0 });
-          }
-
           const tl = gsap.timeline({
             onComplete() {
               initPage(false);
@@ -252,11 +256,12 @@ barba.init({
               .to(menu, {
                 y: 0,
                 duration: 0.5,
-                ease: menuEase,
+                ease: mainEase,
                 stagger: 0.01,
+                delay: 0.6
               })
-              .to(data.next.container, opacityEnterAnim, 0.5)
-              .to(data.next.container, transformAnim, 0.55);
+              .to(data.next.container, opacityEnterAnim, 0.9)
+              .to(data.next.container, transformAnim, 0.95);
           } else {
             tl.set(data.next.container, { y: 30, opacity: 0 })
               .to(data.next.container, opacityEnterAnim)
@@ -269,8 +274,9 @@ barba.init({
   requestError: (trigger, action, url, response) => {
     if (action === "click" && response.status && response.status === 404) {
       barba.go("/404");
-    } else if (response.status && response.status === 200) {
+    } else if (response.status && (response.status === 408|| response.status === 504)) {
       window.location.reload();
+      initPage(true);
     }
     return false;
   },
@@ -305,7 +311,7 @@ function toggleNav() {
   }
 }
 
-function initPage() {
+function initPage(showContent) {
   const animText = document.querySelectorAll(".rise");
   const animStroke = document.querySelectorAll(".stroke");
   const videos = document.querySelectorAll("video");
@@ -388,4 +394,16 @@ function initPage() {
       }
     }
   });
+
+  if (showContent === true) {
+    let pageContent = document.querySelector(".page-content");
+    let menu = document.body.querySelectorAll(
+      ".menu-home .btn, .menu-links .btn .link-container"
+    );
+    pageContent.style.opacity = 1;
+
+    for (i = 0; i < menu.length; i++) {
+      menu[i].style.opacity = 1;
+    }
+  }
 }
