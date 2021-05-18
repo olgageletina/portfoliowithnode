@@ -21,22 +21,17 @@ const transformAnim = {
   duration: 0.275,
 };
 
-barba.hooks.beforeEnter(function(data) {
-  if (
-    data.next.url.hash === "about" ||
-    data.next.url.hash === "contact"
-  ) {
+barba.hooks.beforeEnter(function (data) {
+  if (data.next.url.hash === "about" || data.next.url.hash === "contact") {
     const yCoord = document
       .getElementById(data.next.url.hash)
       .getBoundingClientRect();
     window.scrollTo({ top: yCoord.top });
-
-  }  else {
+  } else {
     window.scrollTo({ top: 0 });
-
   }
-  console.log('scroll scroll scroll');
-  console.log(data)
+  // console.log("scroll scroll scroll");
+  // console.log(data);
 });
 
 barba.init({
@@ -88,7 +83,7 @@ barba.init({
 
           document.getElementById("work").classList.add("hide");
           resolve();
-        })
+        });
       },
 
       beforeEnter(data) {
@@ -107,10 +102,10 @@ barba.init({
             ogImg.parentNode.classList.contains("img-lazy")
           ) {
             ogImg.parentNode.classList.remove("img-lazy");
-          } if (ogImg.classList && ogImg.classList.contains("lazyload")) {
+          }
+          if (ogImg.classList && ogImg.classList.contains("lazyload")) {
             ogImg.classList.remove("lazyload");
           }
-
 
           const tl = gsap.timeline({
             onComplete() {
@@ -186,11 +181,7 @@ barba.init({
               0.1
             )
             .to(data.next.container, opacityEnterAnim, 0.65)
-            .to(
-              data.next.container,
-              transformAnim,
-              0.7
-            );
+            .to(data.next.container, transformAnim, 0.7);
         });
       },
       leave(data) {
@@ -258,7 +249,7 @@ barba.init({
                 duration: 0.5,
                 ease: mainEase,
                 stagger: 0.01,
-                delay: 0.6
+                delay: 0.6,
               })
               .to(data.next.container, opacityEnterAnim, 0.9)
               .to(data.next.container, transformAnim, 0.95);
@@ -274,7 +265,10 @@ barba.init({
   requestError: (trigger, action, url, response) => {
     if (action === "click" && response.status && response.status === 404) {
       barba.go("/404");
-    } else if (response.status && (response.status === 408|| response.status === 504)) {
+    } else if (
+      response.status &&
+      (response.status === 408 || response.status === 504)
+    ) {
       window.location.reload();
       initPage(true);
     }
@@ -282,7 +276,7 @@ barba.init({
   },
   logLevel: "error",
   timeout: 5000,
-  debug: true,
+  // debug: true,
 });
 
 //expanding and folding mobile nav
