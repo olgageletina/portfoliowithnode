@@ -1,13 +1,15 @@
-<h1 class="visually-hidden"><%= pName %></h1>
-<div class="column-reverse aligned-bottom">
+<h1 class="visually-hidden">
+    <%= pName %>
+</h1>
+<div class="column-reverse-custom aligned-bottom">
     <div class="col-1">
         <p class="project-about">
             <%= text %>
         </p>
     </div>
     <div class="project-img col-2">
-        <div class="img-container title">
-            <img class="title-img" src="<%= pImg %>" alt="<%= imgDesc %>" />
+        <div class="img-container title img-lazy">
+            <%= pImg %>
         </div>
     </div>
 </div>

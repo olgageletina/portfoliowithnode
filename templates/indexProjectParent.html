@@ -1,6 +1,6 @@
-<div class="project column-reverse">
+<div class="project column-reverse stroke">
 	<div class="project-desc">
-		<a href="/<%= purl %>">
+		<a href="/<%= purl %>" class="project-link">
 			<strong>
 				<%= pname %>
 			</strong>
@@ -10,10 +10,10 @@
 		</a>
 	</div>
 	<div class="project-img">
-		<div class="img-container">
-			<a href="/<%= purl %>">
-				<img src="<%= pimg %>" alt="<%= pimgdesc %>" />
-			</a>
-		</div>
+		<a href="/<%= purl %>" class="project-link">
+			<div class="img-container img-lazy">
+				<%= pimg %>
+			</div>
+		</a>
 	</div>
 </div>
