@@ -65,12 +65,12 @@ function testPath(url, request, response) {
   switch (true) {
     case projectList.indexOf(projectId) != -1:
       request.q = { name: "pslug", value: projectId };
-      request.sheet = 4;
+      request.sheet = 2;
       projectController.get(request, response);
       break;
     case /home/.test(url):
     case "/" === url:
-      request.sheet = 3;
+      request.sheet = 1;
       homeController.get(request, response);
       break;
     default:

@@ -427,7 +427,7 @@ a.btn {
 .next-project a:hover .btn-arrow.reset img {
   transition-delay: 0.05s;
   transition-duration: 0.5s;
-  transform: translatex(100%);
+  transform: translatex(101%);
 }
 
 .btn-arrow img {
