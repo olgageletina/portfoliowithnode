@@ -10,6 +10,8 @@ html {
   color: #2a2a2a;
   display: block;
   scroll-behavior: smooth;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   /* scroll-behavior: unset; */
 }
 
@@ -19,7 +21,7 @@ body {
   width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .hide {
@@ -50,9 +52,14 @@ header {
   padding: 0.2rem 1.2rem 0.2rem 1.2rem;
 }
 
-.project-page,
+/* .project-page, */
 .landing-page {
   padding: 0 1.2rem 1.2rem 1.2rem;
+}
+
+.project-page .section,
+.project-page .column-reverse-custom .col-1 {
+  padding: 0 1.2rem;
 }
 
 .page-content {
@@ -596,7 +603,7 @@ ul.contacts li {
 
 /* project page */
 .img-container.title {
-  /* overflow: hidden; */
+  overflow: hidden;
   width: 100%;
   height: 100%;
 }
@@ -629,7 +636,7 @@ img.title-img {
 }
 
 .next-project {
-  padding: 5rem 0 2.5rem 0;
+  padding: 5rem 1.2rem 2.5rem 1.2rem;
   overflow: hidden;
 }
 
@@ -778,6 +785,20 @@ img.title-img {
 
 /* two column breakpoint */
 @media (min-width: 769px) {
+  .next-project {
+    padding: 5rem 0 2.5rem 0;
+    overflow: hidden;
+  }
+
+  .project-page .section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .project-page .column-reverse-custom .col-1 {
+    padding-right: 0;
+  }
+
   header {
     position: absolute;
     width: 25%;
@@ -866,9 +887,9 @@ img.title-img {
   #mobile-nav {
     display: none;
   }
-  .project-about {
+  /* .project-about {
     padding: 0;
-  }
+  } */
   .project-page .section .col-2 {
     flex-direction: row;
     justify-content: center;
@@ -1077,6 +1098,11 @@ img.title-img {
   .next-project .col-half {
     padding-top: 2.25rem;
   }
+
+  .project-page .column-reverse-custom .col-1 {
+    padding-left: 0;
+    padding-right: 1.2rem;
+  }
 }
 
 @media (min-width: 1500px) {
@@ -1101,6 +1127,8 @@ img.title-img {
   .nav-top {
     padding: 2.5rem 4.2rem 2.5rem 4.2rem;
   }
+
+  .project-page .column-reverse-custom .col-1,
   .col-1 {
     padding-right: 1.5rem;
   }
