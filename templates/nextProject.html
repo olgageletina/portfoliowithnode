@@ -1,14 +1,21 @@
-<div class="next-project">
-    <div class="col-half">
-        <a href="/<%= nextSlug %>" class="btn btn-arrow">Next Project
-            <img src="/static/images/right-arrow-dark.svg" alt="right arrow icon" /></a>
-        <a href="/<%= nextSlug %>">
+<div class="next-project stroke">
+    <a href="/<%= nextSlug %>" class="next-project-link">
+        <div class="col-half">
+            <div class="btn btn-arrow next-project-link">Next Project
+                <div class="arrow-container">
+                    <img src="/static/images/right-arrow-dark.svg" alt="right arrow icon" />
+                </div>
+            </div>
             <strong>
                 <%= nextName %>
             </strong>
             <h3>
                 <%= nextDescription %>
             </h3>
-        </a>
-    </div>
+            <span class="dash-container">
+                <span class="dash"></span>
+
+            </span>
+        </div>
+    </a>
 </div>

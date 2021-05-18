@@ -31,6 +31,21 @@ function constructMenu(templateName, dataJSON) {
 
 module.exports.constructMenu = constructMenu;
 
+function constructScripts(templateName, dataJSON) {
+  return renderTemplate("scripts", dataJSON)
+    .then((result) => {
+      return Object.assign({}, dataJSON, { menu: result });
+    })
+    .catch((error) => {
+      console.log(
+        `ERROR : template-${templateName} :: constructHeader error rendering headHTML`
+      );
+      throw error;
+    });
+}
+
+module.exports.constructScripts = constructScripts;
+
 function constructBody(templateName, dataJSON) {
   return renderTemplate(templateName, dataJSON)
     .then((finalHTML) => {

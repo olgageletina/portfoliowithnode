@@ -1,7 +1,7 @@
 <header>
     <div class="menu">
         <div class="menu menu-home">
-            <div class="btn"><a href="./">Olga Geletina</a></div>
+            <div class="btn"><a href="/">Olga Geletina</a></div>
         </div>
         <div id="menu-burger" onclick="toggleNav()">
             <div class="hamburger">
@@ -13,16 +13,22 @@
     </div>
     <!-- desktop menu-->
     <ul class="menu-links">
-        <li class="btn"><a class="link-type-menu" href="./#work">Work</a></li>
-        <li class="btn"><a class="link-type-menu" href="./#about">About</a></li>
-        <li class="btn"><a class="link-type-menu" href="./#contact">Contact</a></li>
+        <li class="btn">
+            <div class="link-container"><a class="link-type-menu" href="/#work">Work</a></div>
+        </li>
+        <li class="btn">
+            <div class="link-container"><a class="link-type-menu" href="/#about">About</a></div>
+        </li>
+        <li class="btn">
+            <div class="link-container"><a class="link-type-menu" href="/#contact">Contact</a></div>
+        </li>
     </ul>
 </header>
 <!-- mobile menu -->
 <div id="mobile-nav" aria-hidden="true">
     <ul class="mobile-links" onclick="toggleNav()">
         <li class="mobile-row">
-            <a href="./#work">
+            <a href="/#work">
                 <div class="main">
                     Work
                 </div>
@@ -32,7 +38,7 @@
             </a>
         </li>
         <li class="mobile-row">
-            <a href="./#about">
+            <a href="/#about" class="burger-link">
                 <div class="main">
                     About
                 </div>
@@ -42,7 +48,7 @@
             </a>
         </li>
         <li class="mobile-row">
-            <a href="./#contact">
+            <a href="/#contact" class="burger-link">
                 <div class="main">
                     Contact
                 </div>
