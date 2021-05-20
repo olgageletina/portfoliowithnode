@@ -8,6 +8,7 @@ const contentEase = CustomEase.create(
   "M0,0 C0.29,0 0.466,0.362 0.498,0.502 0.518,0.592 0.491,0.755 0.524,0.864 0.559,0.98 0.62,1 1,1"
 );
 const dashEase = CustomEase.create("M0,0 C0.23,1 0.32,1 1,1)");
+gsap.registerPlugin(ScrollToPlugin, CustomEase);
 
 let opacityEnterAnim = {
   opacity: 1,
@@ -22,16 +23,11 @@ const transformAnim = {
 };
 
 barba.hooks.beforeEnter(function (data) {
-  if (data.next.url.hash === "about" || data.next.url.hash === "contact") {
-    const yCoord = document
-      .getElementById(data.next.url.hash)
-      .getBoundingClientRect();
-    window.scrollTo({ top: yCoord.top });
-  } else {
-    window.scrollTo({ top: 0 });
-  }
-  // console.log("scroll scroll scroll");
-  // console.log(data);
+  const yCoord =
+    data.next.url.hash === "about" || data.next.url.hash === "contact"
+      ? document.getElementById(data.next.url.hash).getBoundingClientRect().top
+      : 0;
+  gsap.to(window, { duration: 0.35, scrollTo: yCoord });
 });
 
 barba.init({
@@ -45,220 +41,206 @@ barba.init({
         );
       },
       leave(data) {
-        return new Promise(function (resolve) {
-          clone = data.trigger.parentNode.parentNode
-            .querySelector("img")
-            .cloneNode(true);
-          cloneDims = data.trigger.parentNode.parentNode
-            .querySelector(".project-img")
-            .getBoundingClientRect();
+        clone = data.trigger.parentNode.parentNode
+          .querySelector("img")
+          .cloneNode(true);
+        cloneDims = data.trigger.parentNode.parentNode
+          .querySelector(".project-img")
+          .getBoundingClientRect();
 
-          clone.className = "";
+        clone.className = "";
 
-          const containerDims =
-            data.trigger.parentNode.parentNode.getBoundingClientRect();
-          imgPos = containerDims.left;
+        const containerDims =
+          data.trigger.parentNode.parentNode.getBoundingClientRect();
+        imgPos = containerDims.left;
 
-          imgContainer.setAttribute("id", "interim-container");
-          imgContainer.style.cssText = `width: ${containerDims.width}px; left:${imgPos}px`;
+        imgContainer.setAttribute("id", "interim-container");
+        imgContainer.style.cssText = `width: ${containerDims.width}px; left:${imgPos}px`;
 
-          const parent = document.body;
+        const parent = document.body;
 
-          const bodyRect = parent.getBoundingClientRect(),
-            elemRect = document
-              .getElementById("anchor")
-              .getBoundingClientRect();
-          imgPosEndY = elemRect.top - bodyRect.top;
+        const bodyRect = parent.getBoundingClientRect(),
+          elemRect = document.getElementById("anchor").getBoundingClientRect();
+        imgPosEndY = elemRect.top - bodyRect.top;
 
-          imgContainer.insertBefore(clone, imgContainer.childNodes[1]);
-          parent.insertBefore(imgContainer, parent.childNodes[1]);
+        imgContainer.insertBefore(clone, imgContainer.childNodes[1]);
+        parent.insertBefore(imgContainer, parent.childNodes[1]);
 
-          gsap.set(clone, {
-            position: "fixed",
-            x: cloneDims.x,
-            y: cloneDims.y,
-            width: cloneDims.width,
-            height: cloneDims.height,
-          });
+        document.getElementById("work").classList.add("hide");
 
-          document.getElementById("work").classList.add("hide");
-          resolve();
+        gsap.set(clone, {
+          position: "fixed",
+          x: cloneDims.x,
+          y: cloneDims.y,
+          width: cloneDims.width,
+          height: cloneDims.height,
         });
       },
 
       beforeEnter(data) {
-        return new Promise(function (resolve) {
-          //dimensions of the project img on the project page
-          ogImg = document.body.querySelector(".title-img");
+        //dimensions of the project img on the project page
+        ogImg = document.body.querySelector(".title-img");
 
-          //get new dimensions add existing img into the src tag on the incoming page
-          const newDims = ogImg.getBoundingClientRect();
-          ogImg.src = clone.src;
-          ogImg.srcset = clone.srcset;
+        //get new dimensions add existing img into the src tag on the incoming page
+        const newDims = ogImg.getBoundingClientRect();
+        ogImg.src = clone.src;
+        ogImg.srcset = clone.srcset;
 
-          //remove CSS class from parent to evade the loading transition
-          if (
-            ogImg.parentNode.classList &&
-            ogImg.parentNode.classList.contains("img-lazy")
-          ) {
-            ogImg.parentNode.classList.remove("img-lazy");
-          }
-          if (ogImg.classList && ogImg.classList.contains("lazyload")) {
-            ogImg.classList.remove("lazyload");
-          }
+        //remove CSS class from parent to evade the loading transition
+        if (
+          ogImg.parentNode.classList &&
+          ogImg.parentNode.classList.contains("img-lazy")
+        ) {
+          ogImg.parentNode.classList.remove("img-lazy");
+        }
+        if (ogImg.classList && ogImg.classList.contains("lazyload")) {
+          ogImg.classList.remove("lazyload");
+        }
 
-          const tl = gsap.timeline({
-            onComplete() {
-              data.current.container.remove();
-              resolve();
-            },
-          });
-          tl.to(
-            clone,
-            {
-              x: newDims.x - imgPos,
-              y: imgPosEndY,
-              width: newDims.width,
-              height: newDims.height,
-              duration: 0.6,
-              ease: "power4.out",
-            },
-            0
-          );
+        const tl = gsap.timeline({
+          onComplete() {
+            data.current.container.remove();
+          },
         });
+        tl.to(
+          clone,
+          {
+            x: newDims.x - imgPos,
+            y: imgPosEndY,
+            width: newDims.width,
+            height: newDims.height,
+            duration: 0.6,
+            ease: "power4.out",
+          },
+          0
+        );
+
+        return tl;
       },
       enter(data) {
-        return new Promise(function (resolve) {
-          const tl = gsap.timeline({
-            onComplete() {
-              initPage(false);
-              imgContainer.removeChild(clone);
-              document.body.removeChild(imgContainer);
-
-              resolve();
-            },
-          });
-
-          // line up the next container and get rid of the redundant img
-          tl.set(data.next.container, {
-            opacity: 0,
-            y: 30,
-          })
-            .set(ogImg, { opacity: 0 })
-            .to(data.next.container, opacityEnterAnim)
-            .to(data.next.container, transformAnim, 0)
-            .to(ogImg, opacityEnterAnim)
-            .to(clone, { opacity: 0, duration: 0.2 });
+        const tl = gsap.timeline({
+          onComplete() {
+            initPage(false);
+            imgContainer.removeChild(clone);
+            document.body.removeChild(imgContainer);
+          },
         });
+
+        // line up the next container and get rid of the redundant img
+        tl.set(data.next.container, {
+          opacity: 0,
+          y: 30,
+        })
+          .set(ogImg, { opacity: 0 })
+          .to(data.next.container, opacityEnterAnim, 0.35)
+          .to(data.next.container, transformAnim, 0.4)
+          .to(ogImg, opacityEnterAnim, 0.6)
+          .to(clone, { opacity: 0, duration: 0.1 });
+
+        return tl;
       },
     },
 
     {
       name: "default",
       once(data) {
-        return new Promise(function (resolve, reject) {
-          menu = document.body.querySelectorAll(
-            ".menu-home .btn, .menu-links .btn .link-container"
-          );
+        menu = document.body.querySelectorAll(
+          ".menu-home .btn, .menu-links .btn .link-container"
+        );
 
-          const tl = gsap.timeline({
-            onComplete() {
-              initPage(false);
-              resolve();
-            },
-          });
-
-          tl.set(data.next.container, { y: 30, opacity: 0 })
-            .set(menu, { y: "200%", opacity: 1 })
-            .to(
-              menu,
-              {
-                y: 0,
-                duration: 0.5,
-                ease: mainEase,
-                stagger: 0.01,
-              },
-              0.1
-            )
-            .to(data.next.container, opacityEnterAnim, 0.65)
-            .to(data.next.container, transformAnim, 0.7);
+        const tl = gsap.timeline({
+          onComplete() {
+            initPage(false);
+          },
         });
+
+        tl.set(data.next.container, { y: 30, opacity: 0 })
+          .set(menu, { y: "200%", opacity: 1 })
+          .to(
+            menu,
+            {
+              y: 0,
+              duration: 0.5,
+              ease: mainEase,
+              stagger: 0.01,
+            },
+            0.1
+          )
+          .to(data.next.container, opacityEnterAnim, 0.65)
+          .to(data.next.container, transformAnim, 0.7);
+
+        return tl;
       },
       leave(data) {
-        return new Promise(function (resolve) {
-          const tl = gsap.timeline({
-            onComplete() {
-              data.current.container.remove();
-              resolve();
-            },
-          });
-
-          if (
-            data.trigger.classList &&
-            data.trigger.classList.contains("next-project-link")
-          ) {
-            const arrow = document.body.querySelector(
-              ".next-project .btn-arrow"
-            );
-
-            const dash = document.body.querySelector(".dash");
-
-            dash.classList.add("reset");
-            arrow.classList.add("reset");
-
-            tl.to(data.current.container, {
-              opacity: 0,
-              y: 30,
-              ease: mainEase,
-              duration: 0.2,
-              delay: 0.55,
-            }).set(menu, { y: "200%" });
-          } else {
-            const transitionDelay =
-              data.trigger.classList &&
-              data.trigger.classList.contains("burger-link")
-                ? 0.25
-                : 0;
-
-            tl.to(data.current.container, {
-              opacity: 0,
-              y: 30,
-              ease: contentEase,
-              duration: 0.2,
-              delay: transitionDelay,
-            });
-          }
+        const tl = gsap.timeline({
+          onComplete() {
+            data.current.container.remove();
+          },
         });
+
+        if (
+          data.trigger.classList &&
+          data.trigger.classList.contains("next-project-link")
+        ) {
+          const arrow = document.body.querySelector(".next-project .btn-arrow");
+
+          const dash = document.body.querySelector(".dash");
+
+          dash.classList.add("reset");
+          arrow.classList.add("reset");
+
+          tl.to(data.current.container, {
+            opacity: 0,
+            y: 30,
+            ease: mainEase,
+            duration: 0.2,
+            delay: 0.55,
+          }).set(menu, { y: "200%" });
+        } else {
+          const transitionDelay =
+            data.trigger.classList &&
+            data.trigger.classList.contains("burger-link")
+              ? 0.25
+              : 0;
+
+          tl.to(data.current.container, {
+            opacity: 0,
+            y: 30,
+            ease: contentEase,
+            duration: 0.2,
+            delay: transitionDelay,
+          });
+        }
+        return tl;
       },
       enter(data) {
-        return new Promise(function (resolve) {
-          const tl = gsap.timeline({
-            onComplete() {
-              initPage(false);
-              resolve();
-            },
-          });
-
-          if (
-            data.trigger.classList &&
-            data.trigger.classList.contains("next-project-link")
-          ) {
-            tl.set(data.next.container, { y: 30, opacity: 0 })
-              .to(menu, {
-                y: 0,
-                duration: 0.5,
-                ease: mainEase,
-                stagger: 0.01,
-                delay: 0.6,
-              })
-              .to(data.next.container, opacityEnterAnim, 0.9)
-              .to(data.next.container, transformAnim, 0.95);
-          } else {
-            tl.set(data.next.container, { y: 30, opacity: 0 })
-              .to(data.next.container, opacityEnterAnim)
-              .to(data.next.container, transformAnim, 0.05);
-          }
+        const tl = gsap.timeline({
+          onComplete() {
+            initPage(false);
+          },
         });
+
+        if (
+          data.trigger.classList &&
+          data.trigger.classList.contains("next-project-link")
+        ) {
+          tl.set(data.next.container, { y: 30, opacity: 0 })
+            .to(menu, {
+              y: 0,
+              duration: 0.5,
+              ease: mainEase,
+              stagger: 0.01,
+              delay: 0.85,
+            })
+            .to(data.next.container, opacityEnterAnim, 1.35)
+            .to(data.next.container, transformAnim, 1.4);
+        } else {
+          tl.set(data.next.container, { y: 30, opacity: 0 })
+            .to(data.next.container, opacityEnterAnim)
+            .to(data.next.container, transformAnim, 0.05);
+        }
+
+        return tl;
       },
     },
   ],

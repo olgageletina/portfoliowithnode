@@ -34,7 +34,7 @@ module.exports.constructMenu = constructMenu;
 function constructScripts(templateName, dataJSON) {
   return renderTemplate("scripts", dataJSON)
     .then((result) => {
-      return Object.assign({}, dataJSON, { menu: result });
+      return Object.assign({}, dataJSON, { scripts: result });
     })
     .catch((error) => {
       console.log(
