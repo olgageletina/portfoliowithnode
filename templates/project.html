@@ -19,22 +19,6 @@
     </div>
 </body>
 
-<script defer
-    src="https://polyfill.io/v3/polyfill.min.js?features=default%2CArray.prototype.find%2CIntersectionObserver"></script>
-<script defer src="/static/js/CustomEase.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.min.js"></script>
-<script defer src="/static/js/split.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
-<script defer src="/static/js/lazysizes.min.js"></script>
-<script type="text/javascript">
-    const isIE = /*@cc_on!@*/ false || !!document.documentMode;
-    if (isIE === false) {
-        document.write("<script defer src=\"/static/js/script.js\"></scr" + "ipt>");
-        // document.write("<script src=\"js/moreskins.js\"></scr" + "ipt>");
-    } else {
-        document.write("<script defer src=\"/static/js/ie-script.js\"></scr" + "ipt>");
-        // document.write("<script defer src=\"./js/script.js\"></scr" + "ipt>");
-    }
-</script>
+<%= scripts %>
 
 </html>

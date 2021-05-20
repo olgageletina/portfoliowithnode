@@ -3,6 +3,7 @@ const {
   constructBody,
   constructMenu,
   renderTemplate,
+  constructScripts,
 } = require("./helper/HTML-constructor-helpers");
 
 exports.build = function (features) {
@@ -12,6 +13,7 @@ exports.build = function (features) {
   return makeListContent(dataJSON)
     .then((dataJSON) => constructHeader("index", dataJSON))
     .then((dataJSON) => constructMenu("index", dataJSON))
+    .then((dataJSON) => constructScripts("index", dataJSON))
     .then((dataJSON) => constructBody("index", dataJSON))
     .catch((error) => {
       console.log(`ERROR : template-home :: main build function ${error}`);
