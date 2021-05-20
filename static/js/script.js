@@ -134,7 +134,7 @@ barba.init({
           .set(ogImg, { opacity: 0 })
           .to(data.next.container, opacityEnterAnim, 0.35)
           .to(data.next.container, transformAnim, 0.4)
-          .to(ogImg, opacityEnterAnim, 0.6)
+          .to(ogImg, opacityEnterAnim, 0.64)
           .to(clone, { opacity: 0, duration: 0.1 });
 
         return tl;
