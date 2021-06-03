@@ -1,7 +1,11 @@
 const hamburgerElems = document.getElementsByClassName("burger-line");
 const menuNav = document.getElementById("mobile-nav");
 let splits = [];
-let clone, cloneDims, imgPos, ogImg, imgPosEndY, menu;
+let clone, cloneDims, imgPos, ogImg, imgPosEndY;
+const menu = document.body.querySelectorAll(
+  ".menu-home .btn, .menu-links .btn .link-container"
+);
+const hamburger = document.body.querySelector(".hamburger");
 const imgContainer = document.createElement("div");
 const mainEase = CustomEase.create("M0,0 C0.19,1 0.22,1 1,1");
 const contentEase = CustomEase.create(
@@ -10,7 +14,7 @@ const contentEase = CustomEase.create(
 const dashEase = CustomEase.create("M0,0 C0.23,1 0.32,1 1,1)");
 gsap.registerPlugin(ScrollToPlugin, CustomEase);
 
-let opacityEnterAnim = {
+const opacityEnterAnim = {
   opacity: 1,
   ease: mainEase,
   duration: 0.1,
@@ -22,12 +26,25 @@ const transformAnim = {
   duration: 0.275,
 };
 
+const menuAmin = {
+  y: 0,
+  duration: 0.5,
+  ease: mainEase,
+  stagger: 0.01,
+};
+
+const hamAnim = {
+  x: 0,
+  ease: contentEase,
+  duration: 0.2,
+};
+
 barba.hooks.beforeEnter(function (data) {
   const yCoord =
     data.next.url.hash === "about" || data.next.url.hash === "contact"
       ? document.getElementById(data.next.url.hash).getBoundingClientRect().top
       : 0;
-  gsap.to(window, { duration: 0.35, scrollTo: yCoord });
+  gsap.to(window, { duration: 0.1, scrollTo: yCoord });
 });
 
 barba.init({
@@ -102,18 +119,20 @@ barba.init({
             data.current.container.remove();
           },
         });
-        tl.to(
-          clone,
-          {
-            x: newDims.x - imgPos,
-            y: imgPosEndY,
-            width: newDims.width,
-            height: newDims.height,
-            duration: 0.6,
-            ease: "power4.out",
-          },
-          0
-        );
+        tl.set(menu, { y: "200%" })
+          .to(hamburger, { x: "-120%", ease: contentEase, duration: 0.1 })
+          .to(
+            clone,
+            {
+              x: newDims.x - imgPos,
+              y: imgPosEndY,
+              width: newDims.width,
+              height: newDims.height,
+              duration: 0.6,
+              ease: "power4.out",
+            },
+            0
+          );
 
         return tl;
       },
@@ -127,14 +146,20 @@ barba.init({
         });
 
         // line up the next container and get rid of the redundant img
-        tl.set(data.next.container, {
-          opacity: 0,
-          y: 30,
-        })
+        tl.set(
+          data.next.container,
+          {
+            opacity: 0,
+            y: 30,
+          },
+          0.2
+        )
           .set(ogImg, { opacity: 0 })
-          .to(data.next.container, opacityEnterAnim, 0.35)
-          .to(data.next.container, transformAnim, 0.4)
-          .to(ogImg, opacityEnterAnim, 0.64)
+          .to(menu, menuAmin, 0)
+          .to(hamburger, hamAnim, 0.3)
+          .to(data.next.container, opacityEnterAnim, 0.3)
+          .to(data.next.container, transformAnim, 0.35)
+          .to(ogImg, opacityEnterAnim, 0.6)
           .to(clone, { opacity: 0, duration: 0.1 });
 
         return tl;
@@ -144,10 +169,6 @@ barba.init({
     {
       name: "default",
       once(data) {
-        menu = document.body.querySelectorAll(
-          ".menu-home .btn, .menu-links .btn .link-container"
-        );
-
         const tl = gsap.timeline({
           onComplete() {
             initPage(false);
@@ -156,16 +177,7 @@ barba.init({
 
         tl.set(data.next.container, { y: 30, opacity: 0 })
           .set(menu, { y: "200%", opacity: 1 })
-          .to(
-            menu,
-            {
-              y: 0,
-              duration: 0.5,
-              ease: mainEase,
-              stagger: 0.01,
-            },
-            0.1
-          )
+          .to(menu, menuAmin, 0.1)
           .to(data.next.container, opacityEnterAnim, 0.65)
           .to(data.next.container, transformAnim, 0.7);
 
@@ -195,7 +207,9 @@ barba.init({
             ease: mainEase,
             duration: 0.2,
             delay: 0.55,
-          }).set(menu, { y: "200%" });
+          })
+            .set(menu, { y: "200%" })
+            .to(hamburger, { x: "-120%", ease: contentEase, duration: 0.1 });
         } else {
           const transitionDelay =
             data.trigger.classList &&
@@ -225,13 +239,8 @@ barba.init({
           data.trigger.classList.contains("next-project-link")
         ) {
           tl.set(data.next.container, { y: 30, opacity: 0 })
-            .to(menu, {
-              y: 0,
-              duration: 0.5,
-              ease: mainEase,
-              stagger: 0.01,
-              delay: 0.85,
-            })
+            .to(menu, menuAmin, 0.85)
+            .to(hamburger, hamAnim, 1.35)
             .to(data.next.container, opacityEnterAnim, 1.35)
             .to(data.next.container, transformAnim, 1.4);
         } else {
@@ -298,7 +307,7 @@ function initPage(showContent) {
         let elem = entries[i].target;
         if (entries[i].isIntersecting) {
           if (
-            (entries[i].intersectionRatio >= 0.75 &&
+            (entries[i].intersectionRatio >= 0.65 &&
               !elem.classList.contains("next-project")) ||
             (entries[i].intersectionRatio >= 0.25 &&
               elem.classList.contains("next-project"))
