@@ -760,6 +760,12 @@ img.title-img {
   align-self: flex-end;
 }
 
+.made-by img {
+  margin: 0 0.25rem -0.1875rem 0.2rem;
+  height: 1.125rem;
+  width: 1.125rem;
+}
+
 @media (max-width: 374.98px) {
   .mobile-links .mobile-row .main,
   .project-desc strong,
@@ -1096,6 +1102,10 @@ img.title-img {
   .project-page .column-reverse-custom .col-1 {
     padding-left: 0;
     padding-right: 1.2rem;
+  }
+
+  .contact {
+    padding-bottom: 7rem;
   }
 }
 
