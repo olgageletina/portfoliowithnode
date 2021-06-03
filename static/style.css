@@ -1,4 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital@1&display=swap"); */
 *,
 *::before,
 *::after {
@@ -231,6 +230,7 @@ header {
   width: fit-content;
   /* bumping up the touch area size  */
   margin: 1rem 0 1rem 1.25rem;
+  overflow: hidden;
 }
 
 .burger-line.top {
@@ -671,17 +671,6 @@ img.title-img {
   transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* .next-project .col-half::after {
-  content: " ";
-  height: 0.125rem;
-  width: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: #2a2a2a;
-  transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-} */
-
 .next-project.scrolled .dash {
   transform: translateX(0%);
   transition-delay: 0.25s;
@@ -690,11 +679,6 @@ img.title-img {
 .next-project.scrolled .dash.reset {
   transform: translateX(-101%);
 }
-
-/* line retracts on hover */
-/* .next-project a:hover .dash {
-  transform: translateX(-101%);
-} */
 
 .next-project .btn-arrow {
   padding-bottom: 0.3125rem;
@@ -768,6 +752,12 @@ img.title-img {
 
 .mobile-hide {
   display: none;
+}
+
+.made-by {
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
 }
 
 @media (max-width: 374.98px) {
@@ -925,6 +915,10 @@ img.title-img {
   .custom-kern {
     letter-spacing: 0.25rem;
   }
+
+  .contact {
+    padding-bottom: 6rem;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 991.98px) {
@@ -1040,7 +1034,7 @@ img.title-img {
   .project-desc strong,
   .next-project strong,
   h1 {
-    font-size: 3.9375rem;
+    font-size: 3.75rem;
   }
   h3 {
     font-size: 1.75rem;
@@ -1139,7 +1133,7 @@ img.title-img {
   .project-desc strong,
   .next-project strong,
   h1 {
-    font-size: 5rem;
+    font-size: 4.75rem;
   }
   h3 {
     font-size: 2.1875rem;
