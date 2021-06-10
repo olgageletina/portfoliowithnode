@@ -582,9 +582,12 @@ a.link-type-inline:hover::after {
 }
 
 .pub,
-.about-text,
 ul.contacts {
   padding-top: 1.05rem;
+}
+
+.about-text {
+  padding: 1.05rem 0;
 }
 
 .pub-title {
@@ -754,28 +757,16 @@ img.title-img {
   display: none;
 }
 
-.made-by {
-  display: flex;
-  justify-content: flex-end;
-  align-self: flex-end;
-}
-
-.made-by img {
-  margin: 0 0.25rem -0.1875rem 0.2rem;
-  height: 1.125rem;
-  width: 1.125rem;
-}
-
 @media (max-width: 374.98px) {
   .mobile-links .mobile-row .main,
   .project-desc strong,
   .next-project strong,
   h1 {
-    font-size: 2.0625rem;
+    font-size: 1.8125rem;
   }
 
   h3 {
-    font-size: 1.0625rem;
+    font-size: 1rem;
   }
 }
 
@@ -930,7 +921,7 @@ img.title-img {
 @media (min-width: 769px) and (max-width: 991.98px) {
   /* .landing-page, */
   .about-og {
-    padding: 1.2rem 1.2rem 0 0;
+    padding: 1.2rem 0 0 1.15rem;
   }
 
   .project-about {
@@ -947,7 +938,7 @@ img.title-img {
     padding: 1.2rem 0 0 1.2rem;
   }
   .about-text {
-    padding-top: 1.675rem;
+    padding: 1.675rem 0 1.05rem 0;
   }
   .project-desc {
     margin-top: -0.2rem;
@@ -967,7 +958,7 @@ img.title-img {
 @media (min-width: 992px) and (max-width: 1199.98px) {
   /* .landing-page, */
   .about-og {
-    padding: 2.2rem 2.2rem 0 0;
+    padding: 2.2rem 0 0 1.1rem;
   }
   header {
     padding: 2.2rem 0 0 2.2rem;
@@ -1008,7 +999,7 @@ img.title-img {
     font-size: 1.75rem;
   }
   .about-text {
-    padding-top: 1.875rem;
+    padding: 1.875rem 0 1.05rem 0;
   }
   /* img.title-img {
     width: 125%;
@@ -1032,7 +1023,7 @@ img.title-img {
 
 @media (min-width: 1200px) and (max-width: 1499.98px) {
   .about-og {
-    padding: 2rem 2rem 0 0;
+    padding: 2rem 0 0 1.1rem;
   }
   header {
     padding: 2rem 0 0 2rem;
@@ -1049,7 +1040,7 @@ img.title-img {
     font-size: 2.1875rem;
   }
   .about-text {
-    padding-top: 2.1rem;
+    padding: 2.1rem 0 1.05rem 0;
   }
 
   .landing-page,
@@ -1111,10 +1102,10 @@ img.title-img {
 
 @media (min-width: 1500px) {
   .about-text {
-    padding-top: 2rem;
+    padding: 2rem 0 1.05rem 0;
   }
   .about-og {
-    padding: 2.5rem 2.5rem 0 0;
+    padding: 2.5rem 0 1.5rem 0;
   }
   header {
     padding: 2.5rem 0 0 2.5rem;
