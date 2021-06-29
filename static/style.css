@@ -331,6 +331,14 @@ h3 {
   font-weight: 400;
 }
 
+.category {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  letter-spacing: 0.0625rem;
+}
+
 .btn {
   font-size: 0.8125rem;
   letter-spacing: 0.1rem;
@@ -1026,7 +1034,7 @@ img.title-img {
   p {
     font-size: 1.125rem;
   }
-  .btn {
+  .btn, .category {
     font-size: 1rem;
   }
   .landing-page, .project-page {

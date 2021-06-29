@@ -58,6 +58,7 @@ function testPath(url, request, response) {
     "ferro-tiles",
     "experimental-javascript",
     "photo-video",
+    "archives"
   ];
 
   const projectId = url.split("/")[1];
