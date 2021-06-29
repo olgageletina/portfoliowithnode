@@ -335,7 +335,7 @@ h3 {
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   font-weight: 400;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   letter-spacing: 0.0625rem;
 }
 
@@ -1034,8 +1034,11 @@ img.title-img {
   p {
     font-size: 1.125rem;
   }
-  .btn, .category {
+  .btn {
     font-size: 1rem;
+  }
+  .category {
+    font-size: 0.8125rem;
   }
   .landing-page, .project-page {
     padding: 2.5rem;
