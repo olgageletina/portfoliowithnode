@@ -40,6 +40,7 @@ header {
   padding: 0 1.2rem 1.2rem 1.2rem;
 }
 
+.about-description,
 .project-page .section, .project-page .column-reverse-custom .col-1 {
   padding: 0 1.2rem;
 }
@@ -91,7 +92,7 @@ header {
 }
 
 .project-about {
-  padding: 2rem 0 0.75rem 0;
+  padding: 2rem 0 0 0;
 }
 
 .row, .column-reverse, .column-reverse-custom {
@@ -234,10 +235,19 @@ ul.mobile-links {
   width: 100%;
 }
 
+ul.category-list,
 ul.menu-links {
   list-style-type: none;
   padding: 0;
   display: none;
+}
+
+.category-list {
+  text-align: right;
+}
+
+.category-list li {
+  padding-bottom: 0.4375rem;
 }
 
 li.mobile-row a {
@@ -488,6 +498,14 @@ a.link-type-inline:hover::after {
   padding-top: 0;
 }
 
+.project-page .project-info {
+  position: relative;
+}
+.project-page .project-info .project-desc {
+  margin: 2.5rem 0 1.75rem 0;
+}
+
+.project-page .project-info::after,
 .landing-page .project::after {
   content: " ";
   height: 0.125rem;
@@ -499,6 +517,7 @@ a.link-type-inline:hover::after {
   transition: 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+.project-page .project-info.stroke.scrolled::after,
 .landing-page .project.stroke.scrolled::after {
   width: 100%;
   right: unset;
@@ -736,6 +755,11 @@ img.title-img {
     padding-left: 0;
     padding-right: 0;
   }
+
+  .about-description{
+    padding: 0;
+  }
+
   .project-page .column-reverse-custom .col-1 {
     padding-right: 0;
   }
@@ -803,6 +827,8 @@ img.title-img {
     width: 65%;
     margin-right: 1.5rem;
   }
+
+  ul.category-list,
   ul.menu-links {
     display: block;
   }
@@ -956,9 +982,7 @@ img.title-img {
     width: 100%;
     transform: none;
   }
-  .column-reverse-custom {
-    flex-direction: row;
-  }
+  
   .project-page .section .col-2 .col-half:nth-child(odd), .project-page .section .col-2 .col-monolith:nth-child(odd) {
     margin-right: 0.625rem;
     margin-bottom: 0;

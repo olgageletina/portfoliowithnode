@@ -2,10 +2,29 @@
     <%= pName %>
 </h1>
 <div class="column-reverse-custom aligned-bottom">
-    <div class="col-1">
-        <p class="project-about">
-            <%= text %>
-        </p>
+    <div class="col-2 about-description">
+        <div class="row project-info stroke">
+            <div class="project-desc">
+                <strong><%= pName %></strong>
+                <h3><%= pDesc %></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-half">
+                <p class="project-about">
+                    <%= text %>
+                </p>
+
+            </div>
+            <div class="col-half">
+                <ul class="category-list">
+                    <% _.each(pCats, function(item){ %>
+                        <li class="category"><%= item %></li>
+                        <% });%> 
+                </ul>
+  
+              </div>
+        </div>
     </div>
     <div class="project-img col-2">
         <div class="img-container title img-lazy">
