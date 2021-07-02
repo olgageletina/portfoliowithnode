@@ -37,7 +37,10 @@ function makeListContent(stuff) {
         pslug: pInfo.pslug,
         text: pInfo.text,
         pName: pInfo.pname,
+        pDesc: pInfo.description,
+        pCats: pInfo.categories.split(","),
       });
+      
     } else if (pInfo.section === "content") {
       contentPromises.push(
         renderTemplate("projectContent", {

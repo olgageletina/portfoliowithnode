@@ -151,8 +151,7 @@ barba.init({
           {
             opacity: 0,
             y: 30,
-          },
-          0.2
+          }
         )
           .set(ogImg, { opacity: 0 })
           .to(menu, menuAmin, 0)
