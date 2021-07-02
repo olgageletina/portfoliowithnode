@@ -171,7 +171,7 @@ header {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  background-color: var(--light);
+  background-color: #ffffff;
   z-index: 100;
 }
 
@@ -189,7 +189,7 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: var(--light);
+  background-color: #ffffff;
   flex-wrap: wrap;
   justify-content: flex-end;
   padding: 1.2rem;
