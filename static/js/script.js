@@ -8,10 +8,10 @@ const menu = document.body.querySelectorAll(
 const hamburger = document.body.querySelector(".hamburger");
 const imgContainer = document.createElement("div");
 const mainEase = CustomEase.create("M0,0 C0.19,1 0.22,1 1,1");
-const contentEase = CustomEase.create(
-  "M0,0 C0.29,0 0.466,0.362 0.498,0.502 0.518,0.592 0.491,0.755 0.524,0.864 0.559,0.98 0.62,1 1,1"
-);
-const dashEase = CustomEase.create("M0,0 C0.23,1 0.32,1 1,1)");
+// const contentEase = CustomEase.create(
+//   "M0,0 C0.29,0 0.466,0.362 0.498,0.502 0.518,0.592 0.491,0.755 0.524,0.864 0.559,0.98 0.62,1 1,1"
+// );
+// const dashEase = CustomEase.create("M0,0 C0.23,1 0.32,1 1,1)");
 gsap.registerPlugin(ScrollToPlugin, CustomEase);
 
 const opacityEnterAnim = {
@@ -22,7 +22,7 @@ const opacityEnterAnim = {
 
 const transformAnim = {
   y: 0,
-  ease: contentEase,
+  ease: mainEase,
   duration: 0.275,
 };
 
@@ -35,7 +35,7 @@ const menuAmin = {
 
 const hamAnim = {
   x: 0,
-  ease: contentEase,
+  ease: mainEase,
   duration: 0.2,
 };
 
@@ -120,7 +120,7 @@ barba.init({
           },
         });
         tl.set(menu, { y: "200%" })
-          .to(hamburger, { x: "-120%", ease: contentEase, duration: 0.1 })
+          .to(hamburger, { x: "-120%", ease: mainEase, duration: 0.1 })
           .to(
             clone,
             {
@@ -146,13 +146,10 @@ barba.init({
         });
 
         // line up the next container and get rid of the redundant img
-        tl.set(
-          data.next.container,
-          {
-            opacity: 0,
-            y: 30,
-          }
-        )
+        tl.set(data.next.container, {
+          opacity: 0,
+          y: 30,
+        })
           .set(ogImg, { opacity: 0 })
           .to(menu, menuAmin, 0)
           .to(hamburger, hamAnim, 0.3)
@@ -208,7 +205,7 @@ barba.init({
             delay: 0.55,
           })
             .set(menu, { y: "200%" })
-            .to(hamburger, { x: "-120%", ease: contentEase, duration: 0.1 });
+            .to(hamburger, { x: "-120%", ease: mainEase, duration: 0.1 });
         } else {
           const transitionDelay =
             data.trigger.classList &&
@@ -219,7 +216,7 @@ barba.init({
           tl.to(data.current.container, {
             opacity: 0,
             y: 30,
-            ease: contentEase,
+            ease: mainEase,
             duration: 0.2,
             delay: transitionDelay,
           });
